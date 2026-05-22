@@ -1,0 +1,215 @@
+# =============================================================================
+# leaps — .markdownlintrc
+# Markdownlint configuration for a rich documentation + learning repository.
+# Reference: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+# =============================================================================
+
+# Start from the default ruleset and selectively adjust.
+default: true
+
+# MD001 — Heading levels should only increment by one level at a time
+# Enforced. Skipping heading levels (h1 → h3) is a structural error.
+MD001: true
+
+# MD003 — Heading style
+# Enforce ATX-style headings (# Heading) consistently.
+MD003:
+  style: "atx"
+
+# MD004 — Unordered list style
+# Use hyphens consistently for list markers.
+MD004:
+  style: "dash"
+
+# MD005 — Inconsistent indentation for list items at the same level
+MD005: true
+
+# MD007 — Unordered list indentation
+# Two-space indentation for nested lists.
+MD007:
+  indent: 2
+
+# MD009 — Trailing spaces
+# Allow up to 0 trailing spaces (except line breaks, which use 2 spaces in MD).
+MD009:
+  br_spaces: 2
+
+# MD010 — Hard tabs
+# Disallow hard tabs; use spaces throughout.
+MD010: true
+
+# MD011 — Reversed link syntax
+MD011: true
+
+# MD012 — Multiple consecutive blank lines
+# Allow at most one consecutive blank line.
+MD012:
+  maximum: 1
+
+# MD013 — Line length
+# DISABLED. Markdown notes in leaps are meant to be readable in editors
+# without strict line wrapping. Long lines in tables, code blocks, and
+# prose are acceptable. Readability trumps strict line limits.
+MD013: false
+
+# MD014 — Dollar signs used before commands without showing output
+# Disabled — leaps uses $ prefix liberally in shell examples.
+MD014: false
+
+# MD018 — No space after hash on ATX heading
+MD018: true
+
+# MD019 — Multiple spaces after hash on ATX heading
+MD019: true
+
+# MD022 — Headings should be surrounded by blank lines
+MD022: true
+
+# MD023 — Headings must start at the beginning of the line
+MD023: true
+
+# MD024 — No duplicate heading text
+# siblings_only: only flag duplicates that are siblings (same parent heading).
+# This allows the same subheading (e.g., "Overview") to appear in multiple
+# top-level sections — common in topic files that follow a template.
+MD024:
+  siblings_only: true
+
+# MD025 — Multiple top-level headings
+# Each file should have exactly one H1.
+MD025:
+  front_matter_title: "^\\s*title\\s*[:=]"
+
+# MD026 — Trailing punctuation in headings
+# Allow colons (common in "Note:" and "Warning:" headings).
+MD026:
+  punctuation: ".,;!?"
+
+# MD027 — Multiple spaces after blockquote symbol
+MD027: true
+
+# MD028 — Blank line inside blockquote
+# Disabled — multi-paragraph blockquotes (e.g., callout boxes) need blank lines.
+MD028: false
+
+# MD029 — Ordered list item prefix
+# Use "ordered" style: 1. 2. 3. (not all 1.)
+MD029:
+  style: "ordered"
+
+# MD030 — Spaces after list markers
+MD030:
+  ul_single: 1
+  ol_single: 1
+  ul_multi: 1
+  ol_multi: 1
+
+# MD031 — Fenced code blocks should be surrounded by blank lines
+MD031: true
+
+# MD032 — Lists should be surrounded by blank lines
+MD032: true
+
+# MD033 — Inline HTML
+# DISABLED. leaps uses HTML for: <details>/<summary> collapsible sections,
+# callout boxes, <kbd> tags in keyboard shortcut docs, and alignment in tables.
+MD033: false
+
+# MD034 — Bare URL used
+# Disabled — bare URLs in prose are acceptable; auto-linking is common.
+MD034: false
+
+# MD035 — Horizontal rule style
+# Use three hyphens consistently.
+MD035:
+  style: "---"
+
+# MD036 — Emphasis used instead of a heading
+# Catches **Bold text** on its own line being used as a fake heading.
+MD036: true
+
+# MD037 — Spaces inside emphasis markers
+MD037: true
+
+# MD038 — Spaces inside code span elements
+MD038: true
+
+# MD039 — Spaces inside link text
+MD039: true
+
+# MD040 — Fenced code blocks should have a language specified
+# Enforced — all code blocks in leaps should have a language for syntax
+# highlighting. Use "text" or "console" for plain text blocks.
+MD040: true
+
+# MD041 — First line in file should be a top level heading
+# Enforced. Every Markdown file should open with an H1.
+MD041: true
+
+# MD042 — No empty links
+MD042: true
+
+# MD043 — Required heading structure
+# Not configured — topic files follow a template but not all files need
+# identical heading structures.
+MD043: false
+
+# MD044 — Proper names should have correct capitalization
+# Configured for proper names used throughout leaps.
+MD044:
+  names:
+    - "leaps"
+    - "JavaScript"
+    - "TypeScript"
+    - "Python"
+    - "Rust"
+    - "Go"
+    - "GitHub"
+    - "GitLens"
+    - "Obsidian"
+    - "Jupyter"
+    - "JupyterLab"
+    - "NumPy"
+    - "Pandas"
+    - "Matplotlib"
+    - "VS Code"
+    - "Markdown"
+    - "Mermaid"
+    - "Docker"
+    - "MkDocs"
+  code_blocks_in_spans: false
+
+# MD045 — Images should have alternate text
+MD045: true
+
+# MD046 — Code block style
+# Use fenced code blocks (``` style) consistently.
+MD046:
+  style: "fenced"
+
+# MD047 — Files should end with a single newline character
+MD047: true
+
+# MD048 — Code fence style
+# Use backtick fences consistently.
+MD048:
+  style: "backtick"
+
+# MD049 — Emphasis style
+# Use asterisks for emphasis.
+MD049:
+  style: "asterisk"
+
+# MD050 — Strong style
+# Use double asterisks for strong.
+MD050:
+  style: "asterisk"
+
+# MD051 — Link fragments should be valid
+MD051: true
+
+# MD052 — Reference links and images should use a label that is defined
+MD052: true
+
+# MD053 — Link and image reference definitions should be needed
+MD053: true

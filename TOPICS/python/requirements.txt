@@ -1,0 +1,45 @@
+# Python Learning Environment Requirements
+# Install with: pip install -r requirements.txt
+# Recommended: create a virtual environment first
+#   python -m venv .venv
+#   source .venv/bin/activate  (Linux/macOS)
+#   .venv\Scripts\activate     (Windows)
+
+# ── Jupyter / Notebook ─────────────────────────────────────────────────────
+jupyter>=1.0
+notebook>=7.0
+jupyterlab>=4.0
+ipywidgets>=8.0            # Interactive widgets in notebooks
+nbformat>=5.9              # Notebook format utilities
+
+# ── Data Science Stack ─────────────────────────────────────────────────────
+numpy>=1.26                # Numerical computing
+pandas>=2.0                # Data manipulation and analysis
+matplotlib>=3.7            # Plotting and visualization
+scipy>=1.11                # Scientific computing algorithms
+sympy>=1.12                # Symbolic mathematics
+
+# ── Utilities for Exercises ────────────────────────────────────────────────
+requests>=2.31             # HTTP requests (Module I1: Web Scraper)
+# beautifulsoup4>=4.12     # Uncomment when starting web scraper project
+
+# ── Testing ────────────────────────────────────────────────────────────────
+pytest>=7.4                # Test runner
+pytest-cov>=4.1            # Coverage reporting
+pytest-timeout>=2.1        # Test timeouts
+
+# ── Code Quality ───────────────────────────────────────────────────────────
+black>=23.0                # Code formatter (opinionated, zero-config)
+ruff>=0.1                  # Fast linter (replaces flake8, isort, and more)
+mypy>=1.5                  # Static type checker
+
+# ── Optional: Advanced / Future Modules ────────────────────────────────────
+# Uncomment as you progress through the curriculum:
+
+# fastapi>=0.104           # Web framework (after Module 8)
+# uvicorn>=0.24            # ASGI server for FastAPI
+# sqlalchemy>=2.0          # ORM (database module)
+# aiohttp>=3.9             # Async HTTP client (Module 8)
+# rich>=13.0               # Beautiful terminal output
+# click>=8.1               # CLI framework
+# pydantic>=2.0            # Data validation with type hints
