@@ -57,7 +57,7 @@ assert count_vowels("AEIOU") == 5
 assert count_vowels("rhythm") == 0
 
 print("All tests passed!")
-```
+```text
 
 </details>
 
@@ -83,7 +83,7 @@ Example:
 ```python
 format_message("Hello, {}!", "Alice", prefix="[INFO]", timestamp="12:00")
 # → "[INFO] Hello, Alice! [timestamp=12:00]"
-```
+```text
 
 ### Solution
 
@@ -117,7 +117,7 @@ print(format_message("Hello, {}!", "Bob", prefix="[INFO]"))
 
 print(format_message("Error in {}: {}", "module", "not found", prefix="[ERROR]", code=404))
 # [ERROR] Error in module: not found [code=404]
-```
+```text
 
 </details>
 
@@ -145,7 +145,7 @@ def outer():
     inner()
 outer()
 print(x)
-```
+```text
 
 **Snippet B:**
 ```python
@@ -154,7 +154,7 @@ def add(n):
     total += n   # what happens here?
     return total
 add(5)
-```
+```text
 
 **Snippet C:**
 ```python
@@ -164,7 +164,7 @@ def modify():
     x = 20
 modify()
 print(x)
-```
+```text
 
 **Snippet D:**
 ```python
@@ -178,7 +178,7 @@ add10 = make_adder(10)
 print(add5(3))
 print(add10(3))
 print(add5(add10(1)))
-```
+```text
 
 Fix Snippet B and explain why it fails.
 
@@ -188,10 +188,10 @@ Fix Snippet B and explain why it fails.
 <summary>Click to reveal solution</summary>
 
 **Snippet A:**
-```
+```text
 outer  ← inner reads from enclosing scope (E in LEGB)
 global ← outer's local x doesn't affect global x
-```
+```text
 
 **Snippet B:** Raises `UnboundLocalError: local variable 'total' referenced before assignment`
 
@@ -217,16 +217,16 @@ def make_accumulator():
 accumulator = make_accumulator()
 print(accumulator(5))   # 5
 print(accumulator(3))   # 8
-```
+```text
 
 **Snippet C:** Output is `20`. `global x` tells Python to use the module-level `x`.
 
 **Snippet D:**
-```
+```text
 8    (5 + 3)
 13   (10 + 3)
 16   (add5(add10(1)) = add5(11) = 11 + 5 = 16)
-```
+```text
 
 </details>
 
@@ -256,7 +256,7 @@ clean = pipeline(
     lambda s: s.replace("  ", " "),
 )
 print(clean("  Hello   World  "))   # "hello world"
-```
+```text
 
 Also write a `transform_list(items, *functions)` that applies `pipeline(*functions)` to each item in a list.
 
@@ -304,7 +304,7 @@ print(clean("  PYTHON IS   GREAT  "))  # "python is great"
 names = ["  ALICE  ", "bob", "  Charlie  "]
 cleaned_names = transform_list(names, str.strip, str.title)
 print(cleaned_names)   # ['Alice', 'Bob', 'Charlie']
-```
+```text
 
 </details>
 
@@ -379,7 +379,7 @@ def expensive_function(n, _cache={}):
 print(expensive_function(5))   # Computing for 5... → 25
 print(expensive_function(5))   # → 25 (from cache, no "Computing...")
 print(expensive_function(3))   # Computing for 3... → 9
-```
+```text
 
 </details>
 
@@ -480,7 +480,7 @@ print(once_expensive())   # "result"
 print(once_expensive())   # "result"
 print(once_expensive())   # "result"
 print(f"Actually called {call_count} time(s)")  # Actually called 1 time(s)
-```
+```text
 
 </details>
 
@@ -559,7 +559,7 @@ print(binary_search(sorted_nums, 4))     # -1
 subsets = power_set([1, 2, 3])
 print(len(subsets))    # 8 (2^3)
 print(sorted(subsets)) # [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]
-```
+```text
 
 </details>
 
@@ -659,7 +659,7 @@ try:
     add_numbers(3, "4")     # TypeError!
 except TypeError as e:
     print(f"Caught: {e}")
-```
+```text
 
 </details>
 
@@ -746,7 +746,7 @@ add3 = add(3)
 print(add3(5))   # 8
 print(add(3)(5)) # 8
 print(add(3, 5)) # 8
-```
+```text
 
 </details>
 
@@ -831,7 +831,7 @@ print(commands["run"]("double", 21))         # 42
 
 func = commands["get"]("greet")
 print(func("Bob"))   # Hello, Bob!
-```
+```text
 
 </details>
 

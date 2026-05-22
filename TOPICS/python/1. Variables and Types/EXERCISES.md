@@ -26,14 +26,14 @@ Create a script that demonstrates all of Python's primitive types by assigning a
 
 ### Expected Output
 
-```
+```text
 42 is of type int
 3.14 is of type float
 'hello' is of type str
 True is of type bool
 None is of type NoneType
 b'data' is of type bytes
-```
+```text
 
 ### Solution
 
@@ -75,7 +75,7 @@ print(f"  decoded: {data.decode('utf-8')}")
 # Interesting: bool is a subclass of int
 print(f"\nisinstance(True, int) = {isinstance(True, int)}")  # True
 print(f"True + True = {True + True}")   # 2 — because True == 1
-```
+```text
 
 </details>
 
@@ -105,7 +105,7 @@ Given the string `text = "  The Quick Brown Fox Jumps Over The Lazy Dog  "`, wri
 
 ### Expected Output
 
-```
+```text
 Stripped: 'The Quick Brown Fox Jumps Over The Lazy Dog'
 Lowercase: 'the quick brown fox jumps over the lazy dog'
 Words: ['The', 'Quick', 'Brown', 'Fox', 'Jumps', 'Over', 'The', 'Lazy', 'Dog']
@@ -116,7 +116,7 @@ Replaced: 'The Quick Brown Fox Jumps Over The Lazy Cat'
 First 3 chars: 'The'
 Last 3 chars: 'Dog'
 The sentence has 9 words and 43 characters.
-```
+```text
 
 ### Solution
 
@@ -147,7 +147,7 @@ print(f"Replaced: {replaced!r}")
 print(f"First 3 chars: {first_3!r}")
 print(f"Last 3 chars: {last_3!r}")
 print(f"The sentence has {word_count} words and {char_count} characters.")
-```
+```text
 
 </details>
 
@@ -172,7 +172,7 @@ Investigate Python's floating-point behavior and learn to work around precision 
 
 ### Expected Output
 
-```
+```text
 0.1 + 0.2 = 0.30000000000000004
 0.1 + 0.2 == 0.3: False
 math.isclose(0.1 + 0.2, 0.3): True
@@ -182,7 +182,7 @@ are_equal(0.1+0.2, 0.3): True
 inf + 1 = inf
 -inf < any_number: True
 nan == nan: False (NaN is never equal to anything, including itself!)
-```
+```text
 
 ### Solution
 
@@ -225,7 +225,7 @@ print(f"inf + 1 = {inf + 1}")
 print(f"-inf < any_number: {neg_inf < -1e308}")
 print(f"nan == nan: {nan == nan}")  # False!
 print(f"math.isnan(nan): {math.isnan(nan)}")  # True — correct way to check
-```
+```text
 
 </details>
 
@@ -299,7 +299,7 @@ def to_bool_explicit(value) -> bool:
 print(f"\nto_bool_explicit('false') = {to_bool_explicit('false')}")
 print(f"to_bool_explicit('yes') = {to_bool_explicit('yes')}")
 print(f"to_bool_explicit('  ') = {to_bool_explicit('  ')}")
-```
+```text
 
 </details>
 
@@ -352,7 +352,7 @@ def describe(value) -> str:
 # Test
 for test_val in [42, -7, 3.14159, "racecar", "python", True, None, [1, 2, 3]]:
     print(describe(test_val))
-```
+```text
 
 Note: `bool` must be checked before `int` because `isinstance(True, int)` is `True` — `bool` is a subclass of `int`.
 
@@ -422,7 +422,7 @@ print("All assertions passed!")
 # Demonstrate the difference from isinstance():
 print(f"check_type(True, 'int') = {check_type(True, 'int')}")      # False
 print(f"isinstance(True, int) = {isinstance(True, int)}")           # True
-```
+```text
 
 </details>
 
@@ -488,7 +488,7 @@ for n in [256, 257, -5, -6]:
 
 print("\nConclusion: Always use == for value comparison, never `is`")
 print("The only correct uses of `is`: checking for None, True, False")
-```
+```text
 
 </details>
 
@@ -566,7 +566,7 @@ print(f"  Speedup: {eq_time/is_time:.1f}x")
 # String interning is only relevant for performance-critical code
 # that compares huge numbers of strings (parsers, symbol tables, etc.)
 # Never use `is` for string comparison in production code — use `==`.
-```
+```text
 
 </details>
 

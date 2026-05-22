@@ -57,8 +57,8 @@ MODULE_REQUIRED_FILES = [
     "RESOURCES.md",
 ]
 
-# Module directory name pattern: NN_slug  e.g. 00_introduction, 03_control_flow
-RE_MODULE_NAME = re.compile(r"^\d{2,3}_[a-z][a-z0-9_]*$")
+# Module directory name pattern: "N. Module Name"  e.g. "0. Introduction", "3. Control Flow"
+RE_MODULE_NAME = re.compile(r"^\d+\.\s+\S.*$")
 
 # ---------------------------------------------------------------------------
 # Violation types
@@ -119,7 +119,19 @@ def check_topic_required_files(topic_dir: Path) -> list[Violation]:
 
 
 def check_module_required_files(module_dir: Path) -> list[Violation]:
-    """Check that all required module-level files exist."""
+    """Check that all required module-level files exist.
+
+    If the module directory contains no .md files at all it is treated as an
+    unstarted placeholder and only a single WARNING is emitted (not per-file
+    ERRORs), so that pre-created skeleton directories don't block CI.
+    """
+    existing_md = list(module_dir.glob("*.md"))
+    if not existing_md:
+        return [Violation(
+            Severity.WARNING,
+            module_dir,
+            "module not yet started — no .md files found (placeholder directory)",
+        )]
     violations = []
     for fname in MODULE_REQUIRED_FILES:
         fpath = module_dir / fname
@@ -133,20 +145,44 @@ def check_module_required_files(module_dir: Path) -> list[Violation]:
 
 
 def check_module_naming(module_dir: Path) -> list[Violation]:
-    """Check that the module directory name follows the NN_slug pattern."""
+    """Check that the module directory name follows the 'N. Module Name' pattern."""
     name = module_dir.name
     if not RE_MODULE_NAME.match(name):
         return [Violation(
             Severity.ERROR,
             module_dir,
-            f"module directory '{name}' does not match pattern NN_slug "
-            "(e.g. 00_introduction, 03_control_flow)",
+            f"module directory '{name}' does not match pattern 'N. Module Name' "
+            "(e.g. '0. Introduction', '3. Control Flow')",
         )]
     return []
 
 
+def _in_code_block(lines: list[str], idx: int) -> bool:
+    """Return True if lines[idx] is inside a fenced code block (``` or ~~~)."""
+    in_block = False
+    fence_char = ""
+    for i, line in enumerate(lines):
+        if i == idx:
+            return in_block
+        stripped = line.strip()
+        if not in_block:
+            m = re.match(r"^(`{3,}|~{3,})", stripped)
+            if m:
+                in_block = True
+                fence_char = m.group(1)[0]
+        else:
+            if stripped.startswith(fence_char * 3):
+                in_block = False
+                fence_char = ""
+    return in_block
+
+
 def check_h1_count(md_file: Path) -> list[Violation]:
-    """Check that H1 (# heading) appears exactly once in a markdown file."""
+    """Check that H1 (# heading) appears exactly once in a markdown file.
+
+    Lines inside fenced code blocks are skipped so that Python comments
+    like ``# my_var = 1`` do not count as headings.
+    """
     try:
         lines = md_file.read_text(encoding="utf-8", errors="replace").splitlines()
     except OSError:
@@ -155,7 +191,7 @@ def check_h1_count(md_file: Path) -> list[Violation]:
     h1_lines = [
         i + 1
         for i, line in enumerate(lines)
-        if re.match(r"^#\s+\S", line)
+        if re.match(r"^#\s+\S", line) and not _in_code_block(lines, i)
     ]
 
     violations = []
@@ -229,6 +265,8 @@ def check_wiki_links(md_file: Path, topics_dir: Path) -> list[Violation]:
     RE_WIKI = re.compile(r"\[\[([^\]!][^\]]*)\]\]")
 
     for line_num, line in enumerate(lines, start=1):
+        if _in_code_block(lines, line_num - 1):
+            continue
         for m in RE_WIKI.finditer(line):
             raw = m.group(1).strip()
             # Strip section anchor
@@ -299,7 +337,10 @@ def check_internal_links(md_file: Path) -> list[Violation]:
     """
     Check that relative markdown links [text](path) resolve to existing files.
     Only checks relative paths (not http:// etc.).
+    URL-encoded paths (e.g. spaces as %20) are decoded before resolution.
     """
+    from urllib.parse import unquote
+
     try:
         text = md_file.read_text(encoding="utf-8", errors="replace")
         lines = text.splitlines()
@@ -310,6 +351,8 @@ def check_internal_links(md_file: Path) -> list[Violation]:
     violations = []
 
     for line_num, line in enumerate(lines, start=1):
+        if _in_code_block(lines, line_num - 1):
+            continue
         for m in RE_LINK.finditer(line):
             href = m.group(1).strip()
             # Skip anchors-only, external URLs, and mailto
@@ -320,6 +363,8 @@ def check_internal_links(md_file: Path) -> list[Violation]:
                 href = href.split("#")[0]
             if not href:
                 continue
+            # URL-decode (e.g. spaces encoded as %20)
+            href = unquote(href)
             # Resolve relative to the file's directory
             target = (md_file.parent / href).resolve()
             if not target.exists():
@@ -380,8 +425,9 @@ def fix_missing_topic_files(topic_dir: Path) -> list[str]:
 def fix_missing_module_files(module_dir: Path) -> list[str]:
     """Create stub files for any missing required module files. Returns list of created filenames."""
     created = []
-    module_name = module_dir.name.replace("_", " ").title()
+    module_name = module_dir.name
     stubs = {
+        "README.md": f"# {module_name}\n\n> [!NOTE] This module is a placeholder. Content coming soon.\n\n_(Run: \"Generate module for [topic] — {module_name}\" to expand this module with AI assistance.)_\n",
         "NOTES.md": f"# Notes — {module_name}\n\n_(add study notes here)_\n",
         "QUESTIONS.md": f"# Questions — {module_name}\n\n_(log questions here)_\n",
         "EXERCISES.md": f"# Exercises — {module_name}\n\n_(add exercises here)_\n",
@@ -402,19 +448,36 @@ def fix_missing_module_files(module_dir: Path) -> list[str]:
 # ---------------------------------------------------------------------------
 
 
+# Directories inside a topic root that are NOT module directories
+_TOPIC_NON_MODULE_DIRS = {
+    "notebooks", "labs", "assets", "environments", "archive",
+    "code", "exercises", "tests", "notes", "references",
+    "simulations", "tools", "docs", "diagrams", "datasets",
+}
+
+
 def find_module_dirs(topic_dir: Path) -> list[Path]:
-    """Return all module directories for a topic."""
+    """Return all module directories for a topic.
+
+    A module directory is any non-hidden subdirectory whose name starts with a
+    digit followed by a period (matching RE_MODULE_NAME), OR any subdirectory
+    that is not in the known non-module set.  The latter fallback is kept for
+    backwards compatibility but will emit naming violations.
+    """
     modules_dir = topic_dir / "modules"
     if modules_dir.is_dir():
         return sorted(
             d for d in modules_dir.iterdir()
             if d.is_dir() and not d.name.startswith(".")
         )
-    # Fallback: look for directories directly under the topic
+    # Directories that match the numbering pattern are always modules.
+    # Remaining directories not in the exclusion set are also considered
+    # (so they'll get naming violations and prompt the user to fix them).
     return sorted(
         d for d in topic_dir.iterdir()
-        if d.is_dir() and not d.name.startswith(".")
-        and d.name not in ("notebooks", "labs", "assets", "environments")
+        if d.is_dir()
+        and not d.name.startswith(".")
+        and d.name not in _TOPIC_NON_MODULE_DIRS
     )
 
 

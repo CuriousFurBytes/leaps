@@ -122,7 +122,7 @@ Guido served as Python's BDFL (Benevolent Dictator For Life) until 2018, when he
 python --version
 # or
 python3 --version
-```
+```text
 
 Expected output: `Python 3.12.x` (or similar 3.x version)
 
@@ -141,7 +141,7 @@ As of 2025, Python 3.12 and 3.13 are current. Avoid Python 2.x entirely.
 # After installation, verify:
 python3 --version         # Python 3.12.x
 python3 -m pip --version  # pip 24.x
-```
+```text
 
 > [!NOTE]
 > On some systems, `python` refers to Python 2. Use `python3` explicitly until you've configured your environment. The `python` command in this topic's material assumes Python 3.
@@ -154,12 +154,12 @@ REPL stands for **Read-Eval-Print Loop**. It is Python's interactive mode — yo
 
 Start it by running `python3` with no arguments:
 
-```
+```text
 $ python3
 Python 3.12.3 (main, Apr  9 2024, 08:09:14) [GCC 13.2.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
-```
+```text
 
 The `>>>` prompt means Python is waiting for input. The `...` prompt means Python is waiting for you to finish a multi-line statement.
 
@@ -182,7 +182,7 @@ The `>>>` prompt means Python is waiting for input. The `...` prompt means Pytho
 >>> type(42)
 <class 'int'>
 >>> help(str.upper)   # built-in help system
-```
+```text
 
 Exit the REPL with `exit()`, `quit()`, or `Ctrl+D` (Linux/macOS) / `Ctrl+Z Enter` (Windows).
 
@@ -212,22 +212,22 @@ print(f"Hello, {name}! It is {year}.")
 # Python can do math
 print(f"2 + 2 = {2 + 2}")
 print(f"The square root of 144 is {144**0.5}")
-```
+```text
 
 Run it from the command line:
 
 ```bash
 python3 hello.py
-```
+```text
 
 Expected output:
-```
+```text
 Hello, World!
 Welcome to Python!
 Hello, Alice! It is 2025.
 2 + 2 = 4
 The square root of 144 is 12.0
-```
+```text
 
 **What just happened:**
 - `print()` is a built-in function that writes to standard output
@@ -244,10 +244,10 @@ Python has a guiding philosophy encoded as an Easter egg. In the REPL, run:
 
 ```python
 >>> import this
-```
+```text
 
 Output:
-```
+```text
 The Zen of Python, by Tim Peters
 
 Beautiful is better than ugly.
@@ -269,7 +269,7 @@ Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
-```
+```text
 
 **Three principles worth dwelling on:**
 
@@ -349,7 +349,7 @@ print((2 + 3) * 4) # 20 (parentheses first)
 
 # Python integers have no overflow!
 print(2 ** 100)    # 1267650600228229401496703205376
-```
+```text
 
 ### Example 2: Getting User Input
 
@@ -362,7 +362,7 @@ print(f"Hello, {name}!")
 age_str = input("Enter your age: ")
 age = int(age_str)
 print(f"In 10 years you will be {age + 10}.")
-```
+```text
 
 ### Example 3: Python's Built-in Help
 
@@ -376,7 +376,7 @@ help()           # enter interactive help browser
 # Quick attribute list
 dir(str)         # list all attributes and methods of str
 dir([])          # list all methods of a list
-```
+```text
 
 ---
 

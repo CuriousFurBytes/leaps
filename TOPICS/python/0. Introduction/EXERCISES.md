@@ -39,7 +39,7 @@ Open a Python REPL and complete the following tasks interactively.
 
 ### Expected Output
 
-```
+```text
 >>> print("Hello, World!")
 Hello, World!
 >>> 2 + 2
@@ -50,7 +50,7 @@ Hello, World!
 <class 'int'>
 >>> type("hello")
 <class 'str'>
-```
+```text
 
 ### Solution
 
@@ -72,7 +72,7 @@ Hello, World!
 <class 'str'>
 >>> exit()
 $
-```
+```text
 
 **Key observations:**
 - In the REPL, expression values are automatically printed (no `print()` needed)
@@ -112,10 +112,10 @@ Write a Python script that introduces you and prints today's date.
 
 ### Expected Output
 
-```
+```text
 My name is Alice.
 Today is May 22, 2025.
-```
+```text
 
 *(Your name and date will differ)*
 
@@ -137,7 +137,7 @@ print(f"My name is {name}.")
 today = datetime.date.today()
 formatted = today.strftime("%B %d, %Y")
 print(f"Today is {formatted}.")
-```
+```text
 
 **Key observations:**
 - `import datetime` loads the standard library `datetime` module
@@ -252,7 +252,7 @@ Python 3.12.3
 
 $ python3 -c "import sys; print(sys.version_info)"
 sys.version_info(major=3, minor=12, micro=3, releaselevel='final', serial=0)
-```
+```text
 
 ### Solution
 
@@ -279,7 +279,7 @@ if sys.version_info >= (3, 10):
     print("Pattern matching is available!")
 if sys.version_info >= (3, 12):
     print("Type parameter syntax (PEP 695) is available!")
-```
+```text
 
 </details>
 
@@ -317,21 +317,21 @@ Write a script that greets the user by name and asks for their age.
 
 ### Expected Output
 
-```
+```text
 Enter your name: Alice
 Enter your age: 30
 Hello, Alice! Welcome to Python.
 You were born around 1995.
-```
+```text
 
 Or, with no name and invalid age:
 
-```
+```text
 Enter your name: 
 Enter your age: abc
 Hello, World! Welcome to Python.
 Invalid age entered — please enter a whole number next time.
-```
+```text
 
 ### Solution
 
@@ -360,7 +360,7 @@ except ValueError:
 # Print greeting
 print(f"Hello, {name}! Welcome to Python.")
 print(age_message)
-```
+```text
 
 **Key observations:**
 - `.strip()` removes accidental whitespace the user might have typed

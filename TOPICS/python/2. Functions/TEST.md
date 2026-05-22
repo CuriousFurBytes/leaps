@@ -34,15 +34,15 @@ def f(x, y=10):
 print(f(5))
 print(f(5, 20))
 print(f(y=3, x=1))
-```
+```text
 
 Your answer:
 
-```
+```text
 line 1:
 line 2:
 line 3:
-```
+```text
 
 ---
 
@@ -80,7 +80,7 @@ def outer():
 f = outer()
 f()
 print(x)
-```
+```text
 
 Your answer: _______________
 
@@ -96,7 +96,7 @@ def add_to_list(item, result=[]):
 print(add_to_list("a"))
 print(add_to_list("b"))
 print(add_to_list("c"))
-```
+```text
 
 What is the actual output? What was the intended output? What is the fix?
 
@@ -116,7 +116,7 @@ triple = make_multiplier(3)
 print(double(5))
 print(triple(5))
 print(double(triple(2)))
-```
+```text
 
 Your answer: _______________
 
@@ -130,7 +130,7 @@ for i in range(5):
     functions.append(lambda: i)
 
 print([f() for f in functions])
-```
+```text
 
 Your answer: _______________
 
@@ -149,7 +149,7 @@ def sort_key(w):
     return (len(w), w.lower())
 
 result = sorted(words, key=sort_key)
-```
+```text
 
 Your answer: _______________
 
@@ -166,13 +166,13 @@ def apply_twice(func, value):
 # Test:
 print(apply_twice(lambda x: x * 2, 5))    # 20
 print(apply_twice(str.strip, "  hello  ")) # "hello"
-```
+```text
 
 Your answer:
 
 ```python
 
-```
+```text
 
 ---
 
@@ -190,13 +190,13 @@ add(1, 2)
 add(3, 4)
 add(5, 6)
 print(add.call_count)   # 3
-```
+```text
 
 Your answer:
 
 ```python
 
-```
+```text
 
 ---
 
@@ -214,7 +214,7 @@ Your answer:
 
 ```python
 
-```
+```text
 
 ---
 

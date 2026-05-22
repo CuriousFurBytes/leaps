@@ -232,9 +232,20 @@ def scan_file(path: Path) -> list[BrokenLink]:
         # --- Wiki links ---
         for m in RE_WIKI_LINK.finditer(line):
             raw = m.group(1)
-            # Skip template placeholders
+            # Skip template placeholders like {{TOPIC_NAME}}
             if "{{" in raw:
                 continue
+            # Skip bash/shell conditionals: [[ $var == value ]] etc.
+            if re.search(r'[$!&|=<>-]', raw) or raw.strip().startswith('"'):
+                continue
+            # Skip PROMPTS/ and TEMPLATES/ files — they intentionally contain
+            # example wiki-links to topics that may not exist yet.
+            try:
+                rel = path.relative_to(REPO_ROOT)
+                if rel.parts[0] in ("PROMPTS", "TEMPLATES"):
+                    continue
+            except ValueError:
+                pass
             exists, resolved, suggestion = resolve_wiki_link(raw)
             if not exists:
                 broken.append(BrokenLink(

@@ -98,7 +98,7 @@ def min_max(numbers):
 
 low, high = min_max([3, 1, 4, 1, 5, 9, 2, 6])
 print(low, high)  # 1 9
-```
+```text
 
 ---
 
@@ -166,13 +166,13 @@ add_all(*numbers)   # same as add_all(1, 2, 3)
 
 config = {"debug": True, "port": 8080}
 configure(**config)  # same as configure(debug=True, port=8080)
-```
+```text
 
 **Parameter ordering rule:**
 
-```
+```text
 def func(positional, /, normal, *args, keyword_only, **kwargs):
-```
+```text
 
 ---
 
@@ -209,7 +209,7 @@ def safe_open(path):
         return None     # finally block still runs even after return
     finally:
         pass  # cleanup runs regardless
-```
+```text
 
 ---
 
@@ -270,7 +270,7 @@ counter = make_counter()
 print(counter())  # 1
 print(counter())  # 2
 print(counter())  # 3
-```
+```text
 
 > [!NOTE]
 > Using `global` is often a sign of poor design. Most functions should get all their inputs via parameters and return outputs via `return`. Reserve `global` for true application-level state (logging config, feature flags) and use it sparingly.
@@ -329,7 +329,7 @@ double = make_multiplier(2)
 triple = make_multiplier(3)
 print(double(5))   # 10
 print(triple(5))   # 15
-```
+```text
 
 ---
 
@@ -362,7 +362,7 @@ operations = {
     "*": lambda a, b: a * b,
 }
 print(operations["+"](3, 5))  # 8
-```
+```text
 
 **When NOT to use lambdas:**
 
@@ -379,7 +379,7 @@ double = lambda x: x * 2   # use def instead
 
 # GOOD use — inline, one-expression, throwaway
 sorted(items, key=lambda item: item.priority)
-```
+```text
 
 > [!NOTE]
 > The Zen of Python says "explicit is better than implicit." If a lambda needs more than one operation or a descriptive name, use `def`. Lambdas shine when inline, anonymous, and obvious.
@@ -440,7 +440,7 @@ ok_handler = make_button_handler("OK")
 cancel_handler = make_button_handler("Cancel")
 ok_handler()      # Button 'OK' was clicked
 cancel_handler()  # Button 'Cancel' was clicked
-```
+```text
 
 **Inspecting closures:**
 
@@ -454,7 +454,7 @@ def outer():
 f = outer()
 print(f.__closure__)   # (<cell at 0x...>,)
 print(f.__closure__[0].cell_contents)  # 10
-```
+```text
 
 ---
 
@@ -496,7 +496,7 @@ names: list[str] = []
 Vector = list[float]
 def dot_product(v1: Vector, v2: Vector) -> float:
     return sum(a * b for a, b in zip(v1, v2))
-```
+```text
 
 ---
 
@@ -537,7 +537,7 @@ def complex_function(param1: str, param2: int = 0) -> list[str]:
     if not param1:
         raise ValueError("param1 cannot be empty")
     return [param1] * param2 if param2 > 0 else [param1]
-```
+```text
 
 ---
 
@@ -638,7 +638,7 @@ def clamp(value: float, minimum: float, maximum: float) -> float:
 print(clamp(150, 0, 100))   # 100 (clamped to max)
 print(clamp(-5, 0, 100))    # 0   (clamped to min)
 print(clamp(50, 0, 100))    # 50  (within range)
-```
+```text
 
 ### Example 2: Higher-Order Functions
 
@@ -666,7 +666,7 @@ clean_text = compose(
 
 messy = "  Hello   WORLD  "
 print(clean_text(messy))   # "hello world"
-```
+```text
 
 ### Example 3: Decorator Pattern Preview
 
@@ -691,7 +691,7 @@ def slow_sum(n):
     return sum(range(n))
 
 total = slow_sum(10_000_000)   # 'slow_sum' took 0.2847s
-```
+```text
 
 ### Example 4: Recursive Functions
 
@@ -712,7 +712,7 @@ def factorial(n: int) -> int:
     return n * factorial(n - 1)
 
 print(factorial(10))   # 3628800
-```
+```text
 
 ### Example 5: Functions with Complex Signatures
 
@@ -752,7 +752,7 @@ def create_report(
         lines.append(f"Total rows: {len(rows)}")
 
     return "\n".join(lines)
-```
+```text
 
 ---
 

@@ -57,15 +57,15 @@ x = "Hello, World!"
 print(x[7:12])
 print(x[-6:])
 print(x[::-1])
-```
+```text
 
 Your answer:
 
-```
+```text
 [line 1]:
 [line 2]:
 [line 3]:
-```
+```text
 
 ---
 
@@ -78,16 +78,16 @@ x = "now a string"
 print(type(x).__name__)
 x = [1, 2, 3]
 print(type(x).__name__)
-```
+```text
 
 Your answer:
 
-```
+```text
 [line 1]:
 [line 2]:
 [line 3]:
 Dynamic or static?
-```
+```text
 
 ---
 
@@ -97,7 +97,7 @@ Dynamic or static?
 a, b = 10, 20
 a, b = b, a
 c = a + b
-```
+```text
 
 Your answer: a=___ b=___ c=___
 
@@ -113,7 +113,7 @@ if total == 0.3:
     print("Equal!")
 else:
     print("Not equal!")
-```
+```text
 
 Your answer:
 
@@ -145,7 +145,7 @@ Your answer:
 
 ```python
 
-```
+```text
 
 ---
 
@@ -160,7 +160,7 @@ Your answer:
 
 ```python
 
-```
+```text
 
 ---
 

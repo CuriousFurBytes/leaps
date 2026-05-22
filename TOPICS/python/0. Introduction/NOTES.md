@@ -47,7 +47,7 @@ The f-string syntax feels natural. `f"Hello, {name}!"` is readable even without 
 <class 'bool'>
 >>> type(None)
 <class 'NoneType'>
-```
+```text
 
 **The Zen — three principles that stood out:**
 
@@ -70,7 +70,7 @@ Excited. Python feels fast to get started with compared to other languages I've 
 
 *(Copy this block for each study session)*
 
-```
+```text
 ## YYYY-MM-DD — [session title]
 
 **What I did:**
@@ -89,7 +89,7 @@ Excited. Python feels fast to get started with compared to other languages I've 
 
 **Connections to other things I know:**
 -
-```
+```text
 
 ---
 

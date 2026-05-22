@@ -45,7 +45,7 @@ flowchart TD
     COMPLETE --> DATA["Specialization:\nData Science\nNumPy / Pandas"]
     COMPLETE --> ML["Specialization:\nMachine Learning\nPyTorch / TensorFlow"]
     COMPLETE --> AUTO["Specialization:\nAutomation\nscripting / DevOps"]
-```
+```text
 
 ---
 
@@ -120,31 +120,31 @@ flowchart TD
 Once all 9 core modules are complete, choose a specialization based on your goals:
 
 ### Web Development Path
-```
+```text
 FastAPI → SQLAlchemy → PostgreSQL → Docker → deployment
    or
 Django → DRF → PostgreSQL → Redis → Celery
-```
+```text
 Recommended topics: [[web-development]], [[docker]], [[databases]]
 
 ### Data Science Path
-```
+```text
 NumPy → Pandas → Matplotlib → Seaborn → Jupyter
   → Scikit-learn → Statistics → SQL
-```
+```text
 Recommended topics: [[data-science]], [[statistics]], [[sql]]
 
 ### Machine Learning Path
-```
+```text
 NumPy + Pandas → Scikit-learn → PyTorch → deep learning
-```
+```text
 Recommended topics: [[machine-learning]], [[linear-algebra]], [[calculus]]
 
 ### Automation / DevOps Path
-```
+```text
 os/pathlib → subprocess → argparse → schedule
   → Paramiko → Ansible with Python
-```
+```text
 Recommended topics: [[linux]], [[networking]], [[docker]]
 
 ---
