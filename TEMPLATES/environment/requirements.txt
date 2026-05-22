@@ -1,0 +1,175 @@
+# =============================================================================
+# LEAPS Learning Environment — Python Requirements
+# Topic: {{TOPIC_NAME}}
+#
+# Instructions:
+#   1. Keep only the packages you actually need for this topic.
+#   2. Comment out packages you're keeping for reference but not using.
+#   3. Pin versions for reproducibility (>=X.Y allows minor version upgrades).
+#   4. Group new packages under the appropriate category header.
+#
+# Install: pip install -r requirements.txt
+# =============================================================================
+
+
+# =============================================================================
+# Core Scientific Computing
+# =============================================================================
+
+# N-dimensional arrays, linear algebra, random number generation
+numpy>=1.26,<3.0
+
+# Scientific algorithms: integration, optimization, signal processing, stats
+scipy>=1.11,<2.0
+
+# Symbolic mathematics: algebra, calculus, equation solving
+sympy>=1.12,<2.0
+
+
+# =============================================================================
+# Data Handling
+# =============================================================================
+
+# DataFrames: tabular data manipulation and analysis
+pandas>=2.1,<3.0
+
+# Apache Arrow: fast columnar data, Parquet file support
+# pyarrow>=14.0
+
+# Excel file support
+# openpyxl>=3.1
+
+# HDF5 file support (large datasets)
+# h5py>=3.9
+
+
+# =============================================================================
+# Visualization
+# =============================================================================
+
+# 2D/3D plotting: the foundational visualization library
+matplotlib>=3.8,<4.0
+
+# Statistical visualization built on matplotlib
+seaborn>=0.13,<1.0
+
+# Interactive, web-based plotting
+# plotly>=5.18
+
+# Static publication-quality figures
+# altair>=5.1
+
+
+# =============================================================================
+# Machine Learning & AI
+# (Uncomment the ones relevant to your topic)
+# =============================================================================
+
+# Classical ML: classification, regression, clustering, preprocessing
+# scikit-learn>=1.3,<2.0
+
+# Gradient boosting (fast, competition-grade)
+# xgboost>=2.0
+# lightgbm>=4.1
+
+# Deep learning (pick one or both)
+# torch>=2.1                      # PyTorch
+# tensorflow>=2.14                # TensorFlow
+
+# Neural network building blocks (framework-agnostic)
+# keras>=3.0
+
+# Large language model interface
+# transformers>=4.35             # Hugging Face Transformers
+# openai>=1.3                    # OpenAI API client
+
+# Vector databases / embeddings
+# faiss-cpu>=1.7                 # Facebook AI Similarity Search
+
+
+# =============================================================================
+# Notebook & Interactive Computing
+# =============================================================================
+
+# Jupyter Notebook (classic interface)
+notebook>=7.0,<8.0
+
+# JupyterLab (modern interface — recommended)
+jupyterlab>=4.0,<5.0
+
+# Interactive widgets for notebooks
+ipywidgets>=8.1
+
+# Progress bars
+tqdm>=4.66
+
+# Rich terminal output
+# rich>=13.6
+
+# Interactive Python shell
+ipython>=8.17
+
+
+# =============================================================================
+# Code Quality & Development
+# =============================================================================
+
+# Code formatter
+black>=23.0
+
+# Fast linter + formatter
+ruff>=0.1
+
+# Import sorter
+isort>=5.12
+
+# Type checking stubs for numpy
+numpy-stubs>=0.0.1; python_version >= "3.9"
+
+# Testing
+pytest>=7.4
+pytest-cov>=4.1
+
+# Documentation
+# sphinx>=7.2
+# sphinx-rtd-theme>=1.3
+
+
+# =============================================================================
+# Utilities
+# =============================================================================
+
+# Date and time handling
+python-dateutil>=2.8
+
+# Environment variable management
+python-dotenv>=1.0
+
+# HTTP requests
+requests>=2.31
+
+# Command-line interface building
+# click>=8.1
+# typer>=0.9
+
+# Configuration file parsing
+# pyyaml>=6.0
+# toml>=0.10
+
+# Concurrency
+# joblib>=1.3      # Parallel loops
+# multiprocess>=0.70
+
+# Profiling
+# memory_profiler>=0.61
+# line_profiler>=4.1
+
+
+# =============================================================================
+# Topic-Specific Packages
+# Add packages specific to {{TOPIC_NAME}} below.
+# =============================================================================
+
+# {{TOPIC_SPECIFIC_PACKAGE_1}}>=X.Y   # {{WHAT_IT_DOES_1}}
+# {{TOPIC_SPECIFIC_PACKAGE_2}}>=X.Y   # {{WHAT_IT_DOES_2}}
+# {{TOPIC_SPECIFIC_PACKAGE_3}}>=X.Y   # {{WHAT_IT_DOES_3}}

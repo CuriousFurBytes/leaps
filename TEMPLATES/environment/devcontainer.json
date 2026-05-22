@@ -1,0 +1,237 @@
+{
+  // ==========================================================================
+  // LEAPS Dev Container — {{TOPIC_NAME}}
+  //
+  // Open this folder in VS Code and choose "Reopen in Container" to get a
+  // fully configured learning environment for {{TOPIC_NAME}}.
+  //
+  // Prerequisites:
+  //   - VS Code with the "Dev Containers" extension installed
+  //   - Docker Desktop running
+  //
+  // Documentation: https://containers.dev/
+  // ==========================================================================
+
+  "name": "{{TOPIC_NAME}} Learning Environment",
+
+  // Build from the local Dockerfile
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "args": {
+      // Pass build arguments here if needed
+      // "PYTHON_VERSION": "3.12"
+    }
+  },
+
+  // Alternatively, use a pre-built image (comment out "build" above and uncomment this):
+  // "image": "mcr.microsoft.com/devcontainers/python:3.12",
+
+  // ==========================================================================
+  // Container settings
+  // ==========================================================================
+
+  // Run as root inside the container (fine for local dev, not for production)
+  "remoteUser": "root",
+
+  // Mount the project directory into /workspace
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+
+  // Additional mounts (uncomment as needed)
+  // "mounts": [
+  //   "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,readonly",
+  //   "source=topic-venv,target=/workspace/.venv,type=volume"
+  // ],
+
+  // ==========================================================================
+  // Port forwarding
+  // ==========================================================================
+
+  "forwardPorts": [
+    8888,   // Jupyter Notebook / JupyterLab
+    8889    // Secondary Jupyter instance
+    // 5000,  // Flask / API server
+    // 6006,  // TensorBoard
+    // 8080   // Generic web server
+  ],
+
+  "portsAttributes": {
+    "8888": {
+      "label": "JupyterLab",
+      "onAutoForward": "openBrowser",
+      "protocol": "http"
+    },
+    "8889": {
+      "label": "Jupyter Notebook",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    }
+  },
+
+  // ==========================================================================
+  // Lifecycle hooks
+  // ==========================================================================
+
+  // Run after the container is created (one-time setup)
+  "onCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+
+  // Run after the container starts (every time)
+  "postStartCommand": "echo 'LEAPS {{TOPIC_NAME}} environment ready. Run: jupyter lab --ip=0.0.0.0 --no-browser'",
+
+  // Run in the background after the container connects
+  // "postAttachCommand": "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root &",
+
+  // ==========================================================================
+  // VS Code settings
+  // ==========================================================================
+
+  "customizations": {
+    "vscode": {
+
+      // -----------------------------------------------------------------
+      // Extensions to install automatically
+      // -----------------------------------------------------------------
+      "extensions": [
+        // Python
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+
+        // Jupyter
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+
+        // Git
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+
+        // Markdown
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "shd101wyy.markdown-preview-enhanced",
+
+        // Code quality
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "ms-python.isort",
+        "charliermarsh.ruff",
+
+        // Utilities
+        "christian-kohler.path-intellisense",
+        "visualstudioexptteam.vscodeintellicode",
+        "pkief.material-icon-theme",
+        "oderwat.indent-rainbow"
+
+        // Topic-specific extensions (add below as needed):
+        // "ms-vscode.cmake-tools",      // C/C++ topics
+        // "rust-lang.rust-analyzer",    // Rust topics
+        // "golang.go",                  // Go topics
+        // "redhat.java",                // Java topics
+      ],
+
+      // -----------------------------------------------------------------
+      // Workspace settings
+      // -----------------------------------------------------------------
+      "settings": {
+        // Python interpreter
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "python.terminal.activateEnvironment": true,
+
+        // Formatting
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+
+        // Linting
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.linting.flake8Args": ["--max-line-length=100"],
+
+        // Jupyter
+        "jupyter.notebookFileRoot": "${workspaceFolder}",
+        "jupyter.askForKernelRestart": false,
+        "jupyter.interactiveWindowMode": "perFile",
+        "notebook.cellFocusIndicator": "gutter",
+        "notebook.lineNumbers": "on",
+        "notebook.output.scrolling": true,
+        "notebook.output.textLineLimit": 50,
+
+        // Editor
+        "editor.fontSize": 14,
+        "editor.lineHeight": 22,
+        "editor.rulers": [100],
+        "editor.wordWrap": "on",
+        "editor.minimap.enabled": false,
+
+        // Terminal
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.fontSize": 13,
+
+        // Markdown
+        "markdown.preview.breaks": true,
+        "markdownlint.config": {
+          "MD013": false,
+          "MD033": false,
+          "MD041": false
+        },
+
+        // Spell checker
+        "cSpell.language": "en",
+        "cSpell.enableFiletypes": ["markdown", "python", "plaintext"],
+
+        // File handling
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.associations": {
+          "*.ipynb": "jupyter",
+          "*.md": "markdown",
+          "requirements*.txt": "pip-requirements"
+        },
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/*.pyc": true,
+          "**/.venv": true
+        },
+
+        // Git
+        "git.autofetch": true,
+        "git.confirmSync": false,
+        "gitlens.currentLine.enabled": true
+      }
+    }
+  },
+
+  // ==========================================================================
+  // Container features (alternative to Dockerfile packages)
+  // These are applied on top of the base image.
+  // Reference: https://containers.dev/features
+  // ==========================================================================
+
+  // "features": {
+  //   "ghcr.io/devcontainers/features/git:1": {},
+  //   "ghcr.io/devcontainers/features/github-cli:1": {},
+  //   "ghcr.io/devcontainers/features/node:1": { "version": "lts" }
+  // },
+
+  // ==========================================================================
+  // Notes
+  // ==========================================================================
+
+  // To rebuild the container: Cmd/Ctrl+Shift+P → "Dev Containers: Rebuild Container"
+  // To open a terminal: Cmd/Ctrl+` or Terminal → New Terminal
+  // To start Jupyter: In the terminal, run: jupyter lab
+  // To access Jupyter: Open http://localhost:8888 in your browser
+}
