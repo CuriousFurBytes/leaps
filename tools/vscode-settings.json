@@ -1,0 +1,162 @@
+{
+  // ─── General Editor ───────────────────────────────────────────────────────
+  "editor.wordWrap": "on",
+  "editor.rulers": [100],
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "trailing",
+  "editor.suggestSelection": "first",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+
+  // ─── Files ────────────────────────────────────────────────────────────────
+  "files.associations": {
+    "*.md": "markdown",
+    "*.ipynb": "jupyter-notebook",
+    "*.env": "dotenv",
+    "Dockerfile*": "dockerfile",
+    ".markdownlintrc": "yaml"
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.ipynb_checkpoints": true,
+    "**/node_modules": true,
+    "**/.git": false
+  },
+  "files.watcherExclude": {
+    "**/__pycache__/**": true,
+    "**/.ipynb_checkpoints/**": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // ─── Markdown ─────────────────────────────────────────────────────────────
+  "markdown.preview.breaks": true,
+  "markdown.preview.fontFamily": "system-ui, -apple-system, sans-serif",
+  "markdown.preview.fontSize": 15,
+  "markdown.preview.lineHeight": 1.7,
+  "markdown.validate.enabled": true,
+  "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.rulers": [],
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnSave": true
+  },
+
+  // ─── Markdownlint ─────────────────────────────────────────────────────────
+  "markdownlint.config": {
+    "MD013": false,
+    "MD033": false,
+    "MD041": true,
+    "MD024": { "siblings_only": true }
+  },
+
+  // ─── Python ───────────────────────────────────────────────────────────────
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.indexing": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+
+  // ─── Ruff (linter) ────────────────────────────────────────────────────────
+  "ruff.enable": true,
+  "ruff.lint.run": "onType",
+  "ruff.organizeImports": true,
+
+  // ─── Jupyter ──────────────────────────────────────────────────────────────
+  "jupyter.askForKernelRestart": false,
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "jupyter.interactiveWindow.textEditor.executeSelection": true,
+  "jupyter.sendSelectionToInteractiveWindow": false,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "notebook.lineNumbers": "on",
+  "notebook.output.scrolling": true,
+  "notebook.output.textLineLimit": 100,
+  "[jupyter-notebook]": {
+    "editor.formatOnSave": false,
+    "diffEditor.ignoreTrimWhitespace": false
+  },
+
+  // ─── Spell Checker ────────────────────────────────────────────────────────
+  "cSpell.enabled": true,
+  "cSpell.language": "en",
+  "cSpell.words": [
+    "leaps",
+    "asyncio",
+    "cpython",
+    "Ebbinghaus",
+    "frontmatter",
+    "ipynb",
+    "ipywidgets",
+    "jupyterlab",
+    "markdownlint",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pyproject",
+    "pytest",
+    "scipy",
+    "sympy",
+    "venv"
+  ],
+  "cSpell.ignorePaths": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/__pycache__/**",
+    "**/*.ipynb"
+  ],
+
+  // ─── GitLens ──────────────────────────────────────────────────────────────
+  "gitlens.currentLine.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.codeLens.enabled": false,
+
+  // ─── Explorer ─────────────────────────────────────────────────────────────
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.md": "${capture}.ipynb",
+    "pyproject.toml": "requirements*.txt, setup.py, setup.cfg, .python-version"
+  },
+  "explorer.sortOrder": "type",
+
+  // ─── Terminal ─────────────────────────────────────────────────────────────
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.scrollback": 5000,
+
+  // ─── Breadcrumbs ──────────────────────────────────────────────────────────
+  "breadcrumbs.enabled": true,
+
+  // ─── Search ───────────────────────────────────────────────────────────────
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/.ipynb_checkpoints": true,
+    "**/site": true,
+    "**/.venv": true,
+    "**/node_modules": true
+  },
+  "search.useGlobalIgnoreFiles": true
+}

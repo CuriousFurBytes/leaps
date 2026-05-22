@@ -1,0 +1,38 @@
+{
+  "name": "leaps Learning Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-renderers",
+        "eamodio.gitlens",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "pkief.material-icon-theme",
+        "bierner.markdown-mermaid",
+        "shd101wyy.markdown-preview-enhanced",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "jupyter.askForKernelRestart": false
+      }
+    }
+  },
+  "postCreateCommand": "pip install jupyter numpy scipy matplotlib sympy pandas requests pytest black ruff ipywidgets && echo 'leaps environment ready!'",
+  "forwardPorts": [8888, 8080],
+  "portsAttributes": {
+    "8888": { "label": "Jupyter Notebook", "onAutoForward": "notify" },
+    "8080": { "label": "Preview Server", "onAutoForward": "notify" }
+  },
+  "remoteUser": "vscode"
+}

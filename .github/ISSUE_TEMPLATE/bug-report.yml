@@ -1,0 +1,88 @@
+name: "Bug Report"
+description: "Report a structural, technical, or validation bug in the repository."
+title: "[Bug] "
+labels:
+  - "bug"
+  - "triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for structural and technical issues: broken links, files in the
+        wrong location, invalid notebooks, broken scripts, malformed YAML frontmatter, etc.
+
+        For issues with the *content* of a module (explanations, exercises, resources),
+        please use the **Content Improvement** template instead.
+
+  - type: dropdown
+    id: bug_type
+    attributes:
+      label: "What Is Broken?"
+      description: "Select the type of structural or technical issue."
+      options:
+        - "Broken internal link (wiki-link or markdown link)"
+        - "Broken external link (URL 404 or redirect)"
+        - "Invalid or corrupt Jupyter notebook"
+        - "File in wrong location (violates repository structure)"
+        - "Missing required file (e.g., module missing TEST.md)"
+        - "Malformed YAML frontmatter"
+        - "Script error (SCRIPTS/ directory)"
+        - "GitHub Actions workflow failure"
+        - "Obsidian compatibility issue"
+        - "Other structural issue"
+    validations:
+      required: true
+
+  - type: input
+    id: file_path
+    attributes:
+      label: "File Path"
+      description: "The path to the affected file or directory, relative to the repository root."
+      placeholder: "e.g., TOPICS/rust/modules/02_ownership/NOTES.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "What should happen? What does a correct, working version of this look like?"
+      placeholder: |
+        The link [[rust#ownership]] in TOPICS/c/modules/05_memory/README.md should
+        resolve to TOPICS/rust/README.md#ownership. In Obsidian, clicking it should
+        open the Rust topic README and jump to the Ownership section.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: "Actual Behavior"
+      description: "What actually happens? Include any error messages, validation output, or screenshots."
+      placeholder: |
+        Clicking the link in Obsidian shows "File not found". The SCRIPTS/find_broken_links.py
+        script also reports:
+          ERROR: TOPICS/c/modules/05_memory/README.md → [[rust#ownership]] → target not found
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: "Steps to Reproduce"
+      description: "How can someone reliably reproduce this bug?"
+      placeholder: |
+        1. Open Obsidian with the leaps vault
+        2. Navigate to TOPICS/c/modules/05_memory/README.md
+        3. Click the [[rust#ownership]] link
+        4. Observe "File not found" error
+
+        Or: run `python SCRIPTS/find_broken_links.py` and observe the error in output.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional Context"
+      description: "Any other information that might help: environment details, related bugs, when this was last working, etc."

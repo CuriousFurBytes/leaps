@@ -1,0 +1,80 @@
+name: "Content Improvement"
+description: "Suggest an improvement to existing topic or module content."
+title: "[Improvement] "
+labels:
+  - "content-improvement"
+  - "triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found something that could be better? Great — improvements are the lifeblood of leaps.
+        Please be as specific as possible about what needs changing and why.
+
+  - type: input
+    id: topic_path
+    attributes:
+      label: "Topic / Module Path"
+      description: "The path to the file or directory that needs improvement, relative to the repository root."
+      placeholder: "e.g., TOPICS/python/modules/03_control_flow/ or TOPICS/calculus/README.md"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: improvement_type
+    attributes:
+      label: "Type of Improvement"
+      description: "What kind of change are you proposing?"
+      options:
+        - "Fix factual error"
+        - "Add exercises"
+        - "Improve explanation"
+        - "Add resources"
+        - "Add notebook"
+        - "Update outdated content"
+        - "Add cross-link"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_issue
+    attributes:
+      label: "Description of Current Issue"
+      description: |
+        Describe what is wrong, missing, unclear, or outdated. Be specific — quote
+        the problematic text if it helps. If reporting a factual error, cite a source
+        that contradicts the current content.
+      placeholder: |
+        In TOPICS/python/modules/04_functions_and_scope/README.md, the section on
+        closures says "Python closures capture variables by value" — this is incorrect.
+        Python closures capture variables by reference (late binding). This is a common
+        source of bugs. See: https://docs.python.org/3/faq/programming.html#why-do-lambdas...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_improvement
+    attributes:
+      label: "Proposed Improvement"
+      description: "Describe the change you would like to see. If possible, include the corrected text, a sketch of new exercises, or an outline of what should be added."
+      placeholder: |
+        Replace the incorrect statement with:
+
+        "Python closures capture variables by reference, not by value. This is known as
+        late binding — the closure looks up the variable's value at call time, not at
+        definition time. This can cause surprising behavior in loops..."
+
+        Also add an exercise demonstrating the late-binding pitfall and how to work
+        around it using default arguments.
+    validations:
+      required: true
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: "Relevant External Resources"
+      description: "Optional: links to documentation, papers, or tutorials that support your proposed improvement."
+      placeholder: |
+        - Python docs on closures: https://docs.python.org/3/reference/executionmodel.html
+        - Real Python — late binding closures: https://realpython.com/...

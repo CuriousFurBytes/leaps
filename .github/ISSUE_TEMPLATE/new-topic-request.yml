@@ -1,0 +1,101 @@
+name: "New Topic Request"
+description: "Request a new learning topic to be added to leaps."
+title: "[Topic Request] "
+labels:
+  - "topic-request"
+  - "triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new topic! leaps grows through community requests.
+        Please fill in as much detail as you can — the more context you provide,
+        the better the initial module structure will be when an agent builds it out.
+
+  - type: input
+    id: topic_name
+    attributes:
+      label: "Topic Name"
+      description: "The name of the topic as it should appear in the repository (e.g., Rust, Linear Algebra, Music Theory)."
+      placeholder: "e.g., Rust Programming Language"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: topic_category
+    attributes:
+      label: "Topic Category"
+      description: "Which category best describes this topic?"
+      options:
+        - "Programming Languages"
+        - "Mathematics"
+        - "Sciences"
+        - "Engineering"
+        - "Arts & Design"
+        - "Humanities"
+        - "Professional Skills"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Brief Description"
+      description: "What is this topic about? What does it cover at a high level?"
+      placeholder: "Rust is a systems programming language focused on memory safety, concurrency, and performance. It achieves memory safety without a garbage collector through its ownership model..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Why Do You Want to Learn This?"
+      description: "What is your motivation for adding this topic? What problem does learning it solve? What goal does it serve?"
+      placeholder: "I want to learn Rust to write safer low-level systems code. I'm currently working on embedded systems projects and C is error-prone..."
+    validations:
+      required: true
+
+  - type: input
+    id: prerequisites
+    attributes:
+      label: "Suggested Prerequisites"
+      description: "What should a learner already know before starting this topic? Reference existing leaps topics where possible."
+      placeholder: "e.g., Basic programming concepts (see TOPICS/python), Understanding of memory (see TOPICS/c)"
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: "Suggested Resources"
+      description: "List any books, courses, documentation, or websites that should anchor this topic's RESOURCES.md. Please provide specific titles and URLs."
+      placeholder: |
+        - The Rust Programming Language (book): https://doc.rust-lang.org/book/
+        - Rustlings (exercises): https://github.com/rust-lang/rustlings
+        - Rust by Example: https://doc.rust-lang.org/rust-by-example/
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: "Estimated Difficulty"
+      description: "How difficult is this topic for a motivated beginner with the stated prerequisites?"
+      options:
+        - "Beginner"
+        - "Intermediate"
+        - "Advanced"
+        - "Expert"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional Context"
+      description: "Anything else that would help structure this topic well. Suggested module breakdown, known subtopics, related leaps topics, etc."
+      placeholder: |
+        Suggested modules:
+        1. Introduction and setup
+        2. Ownership and borrowing
+        3. Structs and enums
+        4. Traits and generics
+        5. Error handling
+        ...

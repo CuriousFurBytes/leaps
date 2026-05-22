@@ -1,0 +1,97 @@
+{
+  "recommendations": [
+    // ── Python ──────────────────────────────────────────────────────────────
+    // Core Python language support: IntelliSense, debugging, test discovery
+    "ms-python.python",
+    // Black code formatter integration
+    "ms-python.black-formatter",
+    // Ruff linter and import organizer (fast, replaces flake8/isort)
+    "charliermarsh.ruff",
+    // Pylance: fast, feature-rich Python language server
+    "ms-python.vscode-pylance",
+
+    // ── Jupyter ─────────────────────────────────────────────────────────────
+    // Core Jupyter notebook support inside VS Code
+    "ms-toolsai.jupyter",
+    // Rich output renderers (Plotly, Vega, etc.) for Jupyter cells
+    "ms-toolsai.jupyter-renderers",
+    // Jupyter keymap support
+    "ms-toolsai.jupyter-keymap",
+
+    // ── Markdown ────────────────────────────────────────────────────────────
+    // Table of contents, keyboard shortcuts, list editing, auto-preview
+    "yzhang.markdown-all-in-one",
+    // Linting for Markdown style and consistency
+    "davidanson.vscode-markdownlint",
+    // Mermaid diagram preview inside Markdown preview
+    "bierner.markdown-mermaid",
+    // Enhanced preview with Mermaid, math, and custom styles
+    "shd101wyy.markdown-preview-enhanced",
+    // Footnote support for Markdown
+    "bierner.markdown-footnotes",
+    // Preview for GitHub-flavored Markdown (alerts, tables)
+    "bierner.github-markdown-preview",
+
+    // ── Wiki-links / Foam ───────────────────────────────────────────────────
+    // Foam: Roam-style wiki-links, backlinks, graph, daily notes
+    // Makes [[wiki-link]] syntax work identically to Obsidian
+    "foam.foam-vscode",
+
+    // ── Git ─────────────────────────────────────────────────────────────────
+    // GitLens: inline blame, history, compare branches, rich git UI
+    "eamodio.gitlens",
+    // Visual git graph with branch visualization
+    "mhutchie.git-graph",
+
+    // ── Spell Checking ──────────────────────────────────────────────────────
+    // Code Spell Checker: catches typos in code, comments, and Markdown
+    "streetsidesoftware.code-spell-checker",
+
+    // ── Icons & Themes ──────────────────────────────────────────────────────
+    // Material icon theme: distinctive icons for every file type
+    "pkief.material-icon-theme",
+
+    // ── YAML / TOML / Config ────────────────────────────────────────────────
+    // YAML language support with schema validation
+    "redhat.vscode-yaml",
+    // TOML syntax support (pyproject.toml, Cargo.toml)
+    "tamasfe.even-better-toml",
+    // Dotenv file highlighting
+    "mikestead.dotenv",
+
+    // ── Docker ──────────────────────────────────────────────────────────────
+    // Dockerfile syntax, linting, and Docker Compose support
+    "ms-azuretools.vscode-docker",
+
+    // ── Dev Containers ──────────────────────────────────────────────────────
+    // Required for "Reopen in Container" with devcontainer.json
+    "ms-vscode-remote.remote-containers",
+
+    // ── Data & Visualization ────────────────────────────────────────────────
+    // CSV/TSV preview as a table
+    "mechatroner.rainbow-csv",
+
+    // ── Editing Quality-of-Life ─────────────────────────────────────────────
+    // Bracket pair colorizer (built into VS Code ≥1.60 but kept for older)
+    // Indent guides and rainbow indentation
+    "oderwat.indent-rainbow",
+    // Highlight TODO, FIXME, NOTE, HACK comments
+    "gruntfuss.todo-highlight",
+    // Better comments: color-coded !, ?, TODO, * annotations
+    "aaron-bond.better-comments",
+    // EditorConfig support (reads .editorconfig files)
+    "editorconfig.editorconfig",
+
+    // ── REST / HTTP ─────────────────────────────────────────────────────────
+    // Send HTTP requests from .http files (useful for API topic)
+    "humao.rest-client",
+
+    // ── Shell ───────────────────────────────────────────────────────────────
+    // Bash/shell script support and linting via shellcheck
+    "timonwong.shellcheck",
+
+    // ── Math ────────────────────────────────────────────────────────────────
+    // LaTeX math preview in Markdown (renders $...$ and $$...$$)
+    "james-yu.latex-workshop"
+  ]
+}
