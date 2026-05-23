@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-05-23T00:27:50.519796",
+  "summary": {
+    "total_topics": 1,
+    "total_modules": 9,
+    "completed_modules": 0,
+    "global_completion_pct": 0.0,
+    "avg_test_score": 31.2
+  },
+  "topics": [
+    {
+      "name": "python",
+      "display_name": "Python",
+      "difficulty": "beginner",
+      "module_count": 9,
+      "completed_modules": 0,
+      "completion_pct": 0.0,
+      "avg_test_score": 31.2,
+      "last_modified": "2026-05-23T00:27:47.801534",
+      "modules": [
+        {
+          "name": "0. Introduction",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [
+            80.0,
+            90.0,
+            0.0,
+            3.0,
+            10.0,
+            15.0
+          ],
+          "last_modified": "2026-05-23T00:27:47.798856"
+        },
+        {
+          "name": "1. Variables and Types",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [
+            80.0,
+            100.0,
+            1.0,
+            5.0,
+            10.0,
+            40.0,
+            9.5,
+            0.0,
+            100.0,
+            55.6
+          ],
+          "last_modified": "2026-05-23T00:27:47.799420"
+        },
+        {
+          "name": "2. Functions",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [
+            80.0,
+            2.0,
+            6.0
+          ],
+          "last_modified": "2026-05-23T00:27:47.799872"
+        },
+        {
+          "name": "3. Control Flow",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [],
+          "last_modified": "2026-05-23T00:27:47.800459"
+        },
+        {
+          "name": "4. Data Structures",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [],
+          "last_modified": "2026-05-23T00:27:47.800692"
+        },
+        {
+          "name": "5. Object-Oriented Programming",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [],
+          "last_modified": "2026-05-23T00:27:47.800907"
+        },
+        {
+          "name": "6. Modules and Packages",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [],
+          "last_modified": "2026-05-23T00:27:47.801118"
+        },
+        {
+          "name": "7. File IO and Error Handling",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [],
+          "last_modified": "2026-05-23T00:27:47.801326"
+        },
+        {
+          "name": "8. Concurrency",
+          "checked": 0,
+          "unchecked": 0,
+          "in_progress": 0,
+          "test_scores": [],
+          "last_modified": "2026-05-23T00:27:47.801534"
+        }
+      ]
+    }
+  ],
+  "recent_activity": [
+    {
+      "file": "TOPICS/python/RESOURCES.md",
+      "modified": "2026-05-23T00:27:47.801534"
+    },
+    {
+      "file": "TOPICS/python/CHEATSHEET.md",
+      "modified": "2026-05-23T00:27:47.801534"
+    },
+    {
+      "file": "TOPICS/python/QUESTIONS.md",
+      "modified": "2026-05-23T00:27:47.801534"
+    },
+    {
+      "file": "TOPICS/python/PROJECTS.md",
+      "modified": "2026-05-23T00:27:47.801534"
+    },
+    {
+      "file": "TOPICS/python/GLOSSARY.md",
+      "modified": "2026-05-23T00:27:47.801534"
+    }
+  ]
+}
