@@ -37,6 +37,17 @@ _Asked: 2026-06-01_
 
 What is a mutex in Go? When and why would I use one?
 
+**Reference snippet:**
+
+```go
+var userLocks sync.Map
+
+func lockFor(userID int) *sync.Mutex {
+    mu, _ := userLocks.LoadOrStore(userID, &sync.Mutex{})
+    return mu.(*sync.Mutex)
+}
+```
+
 ---
 
 ### 2. 🔴 What is `defer`?
@@ -52,6 +63,17 @@ What does the `defer` keyword do in Go? When does it run, and what are common us
 _Asked: 2026-06-01_
 
 How do pointers work in Go? Explain like I'm 5, using terms and mental models familiar to Python developers.
+
+**Reference snippet** — note `&sync.Mutex{}` (get address of), `*sync.Mutex` (pointer type), and `mu.(*sync.Mutex)` (type assertion to extract the pointer):
+
+```go
+var userLocks sync.Map
+
+func lockFor(userID int) *sync.Mutex {
+    mu, _ := userLocks.LoadOrStore(userID, &sync.Mutex{})
+    return mu.(*sync.Mutex)
+}
+```
 
 ---
 
