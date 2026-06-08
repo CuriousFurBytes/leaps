@@ -4,7 +4,7 @@ setup_environment.py - Set up the LEAPS learning environment.
 
 Performs a one-time setup of the LEAPS repository:
   1. Checks Python version (>= 3.10 required)
-  2. Checks for required tools: git, jupyter (optional)
+  2. Checks for required tools: git
   3. Creates TOPICS/ directory if it doesn't exist
   4. Creates a .env template file
   5. Installs Python dependencies from TEMPLATES/environment/requirements.txt (if present)
@@ -108,26 +108,6 @@ def check_git_repo() -> CheckResult:
     return r.fail(
         f"No .git/ directory found at {REPO_ROOT}. "
         "Is this directory a git repository? Run 'git init' if needed."
-    )
-
-
-def check_jupyter() -> CheckResult:
-    r = CheckResult("Jupyter (optional)")
-    jupyter_path = shutil.which("jupyter")
-    if jupyter_path:
-        try:
-            result = subprocess.run(
-                ["jupyter", "--version"],
-                capture_output=True, text=True, timeout=5
-            )
-            # Get the first version line
-            first_line = result.stdout.strip().splitlines()[0] if result.stdout.strip() else "installed"
-            return r.ok(f"Jupyter {first_line} at {jupyter_path}")
-        except Exception:
-            return r.ok(f"found at {jupyter_path}")
-    return r.fail(
-        "Jupyter not found. Install with: pip install jupyter\n"
-        "         (Not required for text-only topics.)"
     )
 
 
@@ -377,7 +357,6 @@ def main() -> int:
         check_python_version(),
         check_git(),
         check_git_repo(),
-        check_jupyter(),
         check_or_create_topics_dir(check_only),
         check_or_create_env_file(check_only),
         check_gitignore(),
@@ -422,7 +401,7 @@ def main() -> int:
         print()
         return 1
 
-    # Non-critical failures (jupyter, pre-commit, etc.)
+    # Non-critical failures (pre-commit, etc.)
     print("  Non-critical issues found. LEAPS will still work, but some features may be limited.")
     print_quickstart()
     return 0

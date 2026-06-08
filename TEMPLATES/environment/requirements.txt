@@ -88,17 +88,8 @@ seaborn>=0.13,<1.0
 
 
 # =============================================================================
-# Notebook & Interactive Computing
+# Interactive Computing
 # =============================================================================
-
-# Jupyter Notebook (classic interface)
-notebook>=7.0,<8.0
-
-# JupyterLab (modern interface — recommended)
-jupyterlab>=4.0,<5.0
-
-# Interactive widgets for notebooks
-ipywidgets>=8.1
 
 # Progress bars
 tqdm>=4.66

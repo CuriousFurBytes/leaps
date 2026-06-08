@@ -762,7 +762,6 @@ def create_report(
 |----------|------|
 | Exercises | [EXERCISES.md](./EXERCISES.md) |
 | Test | [TEST.md](./TEST.md) |
-| Notebook | [notebooks/01_functions_deep_dive.ipynb](./notebooks/01_functions_deep_dive.ipynb) |
 
 ---
 

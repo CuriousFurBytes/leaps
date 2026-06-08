@@ -8,7 +8,7 @@ This document records the key design decisions behind **leaps** (Learning Enviro
 
 ### Decision
 
-All learning content is stored as plain Markdown files. Code, exercises, questions, grades, and notes are all Markdown or Markdown-adjacent (`.ipynb` JSON, `.yml` config). There is no proprietary database, no CMS, and no binary format for text content.
+All learning content is stored as plain Markdown files. Code, exercises, questions, grades, and notes are all Markdown or Markdown-adjacent (`.toml`/`.yml` config). There is no proprietary database, no CMS, and no binary format for text content.
 
 ### Rationale
 
@@ -45,8 +45,8 @@ leaps/
 ├── PROMPTS/         # AI prompt templates
 ├── environments/    # Reproducible setup
 ├── tools/           # Editor and tool configurations
-├── notebooks/       # Cross-topic notebooks
 ├── assets/          # Images and diagrams
+├── zensical.toml    # Zensical book configuration (docs_dir = TOPICS/)
 └── docs/            # Repository meta-documentation
 ```
 
@@ -58,13 +58,12 @@ TOPICS/<topic>/
 ├── module-<n>-<slug>.md # Ordered learning modules
 ├── questions.md         # Append-only question log
 ├── grades.md            # Append-only test records
-├── exercises/           # Coding exercises
-└── notebooks/           # Topic-specific Jupyter notebooks
+└── exercises/           # Coding exercises
 ```
 
 ### Rationale
 
-**ALL-CAPS directories are human signals.** `TOPICS/`, `SHARED/`, `TEMPLATES/`, `SCRIPTS/`, and `PROMPTS/` appear at the top of any `ls` output on case-sensitive filesystems (Linux/macOS) and stand out visually. They are the primary concerns of the repository. Lower-case directories (`tools/`, `environments/`, `notebooks/`) are supporting infrastructure.
+**ALL-CAPS directories are human signals.** `TOPICS/`, `SHARED/`, `TEMPLATES/`, `SCRIPTS/`, and `PROMPTS/` appear at the top of any `ls` output on case-sensitive filesystems (Linux/macOS) and stand out visually. They are the primary concerns of the repository. Lower-case directories (`tools/`, `environments/`, `assets/`) are supporting infrastructure.
 
 **Numbered modules enforce order.** `module-01-introduction.md` before `module-02-types.md` creates a curriculum that is readable from directory listing alone, without opening any file. AI agents generating new modules can infer the next sequence number from the existing files.
 
@@ -104,29 +103,39 @@ Cross-references between notes use `[[wiki-link]]` syntax (e.g., `[[python]]`, `
 
 ---
 
-## 4. Jupyter Notebooks
+## 4. Published as a Zensical Book
 
 ### Decision
 
-Interactive learning exercises, visualizations, and experiments are stored as `.ipynb` Jupyter notebooks alongside Markdown modules.
+The learning material is published as a [Zensical](https://zensical.org) book — the modern static-site generator from the Material for MkDocs team. The Markdown in `TOPICS/` is the single source of truth, and Zensical renders it into a searchable static site that is deployed to GitHub Pages.
+
+The publishing pipeline is:
+
+```
+zensical.toml  →  docs_dir = TOPICS/  →  zensical build --clean  →  site/  →  GitHub Pages
+```
+
+- **`zensical.toml`** at the repository root configures the book. Its `docs_dir` points at `TOPICS/`, so the rendered site is exactly the course content.
+- **Navigation is implicit**, derived from the `TOPICS/` directory tree. Each directory's `README.md` becomes that section's index page; no hand-maintained nav file is required.
+- **`zensical build --clean`** renders the site into the `site/` output directory.
+- **`.github/workflows/docs.yml`** runs that build on every push to `main` (i.e. when a PR is merged) and deploys the result to GitHub Pages.
+
+The book intentionally exposes **only** the course index (`TOPICS/README.md`) and the courses themselves. Repo tooling (`SCRIPTS/`, `PROMPTS/`, `TEMPLATES/`, `docs/`) is excluded from the published site.
 
 ### Rationale
 
-**Prose and code in one document.** A notebook can explain a concept, show code, execute it, and display the output — all in a single file. This is the closest thing to an interactive textbook that works offline.
+**Zero content migration.** Because Zensical reads the same Markdown the repository already stores, publishing is a configuration concern, not a content concern. The content is the content — see Decision 1.
 
-**Reproducibility.** A well-written notebook is a complete, runnable experiment. Someone learning sorting algorithms can read the explanation, modify the code, run it, and see updated output without leaving the document.
+**Implicit navigation tracks the structure.** The directory tree already encodes the curriculum order (numbered modules, per-topic READMEs). Deriving the nav from that tree means the published book stays in sync with the repository automatically, with no separate nav file to drift.
 
-**Language-agnostic structure.** Jupyter supports kernels for Python, Julia, R, JavaScript, and many others. The notebook format is not tied to Python even though most leaps notebooks use Python.
+**Automated, reproducible deployment.** GitHub Pages publishing via a workflow means the live book always reflects `main`. There is no manual publish step to forget.
 
-**Standard in education and research.** Jupyter is the most widely used interactive computing environment. Familiarity reduces onboarding friction.
+**Local preview matches production.** Contributors run `pip install zensical` and then `zensical serve` (http://localhost:8000) to preview exactly what readers will see, or `zensical build` to produce the static site locally.
 
-### Considerations
+### Note on Notebooks
 
-Notebooks have known weaknesses: large diffs (JSON with embedded outputs), merge conflicts, and cell ordering bugs. leaps mitigates these by:
-
-- Stripping outputs before committing where possible (or keeping them intentionally for reference notebooks).
-- Keeping notebooks focused: one concept, one notebook.
-- Storing notebooks in topic directories alongside the prose modules they complement.
+> [!NOTE]
+> Earlier versions of leaps embedded Jupyter notebooks (`.ipynb`) alongside Markdown modules for interactive code. Notebooks were **removed entirely** in favour of the Zensical book: their large JSON diffs, merge conflicts, and the extra build tooling they required complicated a clean, automated GitHub Pages deployment. Runnable code now lives in the prose modules and `exercises/` directories as plain Markdown and source files.
 
 ---
 
@@ -212,7 +221,7 @@ Learning records (grades, questions, answers) are never modified retroactively. 
 
 ### Static Site Publishing
 
-The Markdown-first structure maps naturally to MkDocs with the Material theme or to Astro. A `mkdocs.yml` (or similar) at the root can publish the entire knowledge base as a searchable static site with zero content changes. This is a configuration problem, not a content migration problem.
+This is now implemented — see Decision 4. The knowledge base is published as a [Zensical](https://zensical.org) book (`zensical.toml` → `docs_dir = TOPICS/`), built with `zensical build --clean` and deployed to GitHub Pages by `.github/workflows/docs.yml` on every push to `main`. As predicted, it required only configuration and zero content changes. Remaining refinements (custom theming, search tuning, versioned releases) are incremental configuration work.
 
 ### Graph Visualization
 
@@ -231,7 +240,7 @@ Most topics currently assume Python for code examples. A `language` frontmatter 
 A GitHub Actions workflow can validate:
 - All `[[wiki-links]]` resolve to existing files.
 - All Markdown files pass markdownlint rules.
-- All notebooks in `notebooks/` execute without error.
+- The Zensical book builds cleanly (`zensical build --clean`) with no broken references.
 - Required frontmatter fields are present on all module files.
 
 This enforces the structural contract automatically, reducing the review burden on human contributors.

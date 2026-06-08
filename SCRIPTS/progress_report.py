@@ -257,7 +257,7 @@ def scan_topic(topic_path: Path) -> TopicProgress:
         # Some topics may have modules directly under topic dir (old layout)
         for entry in sorted(topic_path.iterdir()):
             if entry.is_dir() and not entry.name.startswith(".") and entry.name not in (
-                "modules", "notebooks", "labs", "assets"
+                "modules", "labs", "assets"
             ):
                 # Check if it looks like a module (has a README)
                 if (entry / "README.md").exists():

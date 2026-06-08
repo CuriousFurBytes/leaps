@@ -10,14 +10,6 @@
     // Pylance: fast, feature-rich Python language server
     "ms-python.vscode-pylance",
 
-    // ── Jupyter ─────────────────────────────────────────────────────────────
-    // Core Jupyter notebook support inside VS Code
-    "ms-toolsai.jupyter",
-    // Rich output renderers (Plotly, Vega, etc.) for Jupyter cells
-    "ms-toolsai.jupyter-renderers",
-    // Jupyter keymap support
-    "ms-toolsai.jupyter-keymap",
-
     // ── Markdown ────────────────────────────────────────────────────────────
     // Table of contents, keyboard shortcuts, list editing, auto-preview
     "yzhang.markdown-all-in-one",

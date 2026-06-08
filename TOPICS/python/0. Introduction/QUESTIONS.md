@@ -60,9 +60,9 @@ pyenv local 3.11.9   # creates .python-version file
 
 **Asked:** After the REPL felt limiting for multi-line editing
 
-**Thoughts so far:** I've heard of IPython and Jupyter notebooks. The REPL doesn't support multi-line editing well and has no syntax highlighting. Are these better options, and when should I use each?
+**Thoughts so far:** I've heard of IPython. The REPL doesn't support multi-line editing well and has no syntax highlighting. Is it a better option, and when should I use it?
 
-*Jupyter notebooks are used throughout this topic. Try IPython as a REPL replacement — `pip install ipython`.*
+*Try IPython as a REPL replacement — `pip install ipython`.*
 
 ---
 

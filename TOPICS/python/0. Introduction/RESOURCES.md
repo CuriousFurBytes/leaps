@@ -49,8 +49,6 @@ If you want to experiment before installing locally:
 |----------|-----|-------|
 | Python.org Shell | https://www.python.org/shell/ | Official browser-based Python REPL |
 | Replit | https://replit.com/ | Full online IDE; free tier available |
-| Google Colab | https://colab.research.google.com/ | Jupyter notebooks in the browser; free |
-| Jupyter Lite | https://jupyter.org/try-jupyter/ | JupyterLab in the browser; no account needed |
 
 > [!NOTE]
 > Online environments are useful for getting started quickly, but install Python locally as soon as possible. Real development happens locally, and you'll need the command line for the exercises in later modules.

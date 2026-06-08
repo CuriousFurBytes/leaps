@@ -18,9 +18,6 @@ RUN apt-get update && apt-get install -y \
 # Python learning packages
 # Core scientific stack
 RUN pip install --no-cache-dir \
-    jupyter \
-    notebook \
-    jupyterlab \
     numpy \
     scipy \
     matplotlib \
@@ -39,19 +36,11 @@ RUN pip install --no-cache-dir \
     black \
     ruff
 
-# Visualization and interactive
+# Visualization
 RUN pip install --no-cache-dir \
-    ipywidgets \
     plotly \
     scikit-learn
 
 WORKDIR /workspace
 
-EXPOSE 8888
-
-CMD ["jupyter", "lab", \
-     "--ip=0.0.0.0", \
-     "--port=8888", \
-     "--no-browser", \
-     "--allow-root", \
-     "--NotebookApp.token=''"]
+CMD ["bash"]

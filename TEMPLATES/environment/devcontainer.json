@@ -48,26 +48,11 @@
   // Port forwarding
   // ==========================================================================
 
-  "forwardPorts": [
-    8888,   // Jupyter Notebook / JupyterLab
-    8889    // Secondary Jupyter instance
-    // 5000,  // Flask / API server
-    // 6006,  // TensorBoard
-    // 8080   // Generic web server
-  ],
-
-  "portsAttributes": {
-    "8888": {
-      "label": "JupyterLab",
-      "onAutoForward": "openBrowser",
-      "protocol": "http"
-    },
-    "8889": {
-      "label": "Jupyter Notebook",
-      "onAutoForward": "notify",
-      "protocol": "http"
-    }
-  },
+  // "forwardPorts": [
+  //   5000,  // Flask / API server
+  //   6006,  // TensorBoard
+  //   8080   // Generic web server
+  // ],
 
   // ==========================================================================
   // Lifecycle hooks
@@ -77,10 +62,7 @@
   "onCreateCommand": "pip install --no-cache-dir -r requirements.txt",
 
   // Run after the container starts (every time)
-  "postStartCommand": "echo 'LEAPS {{TOPIC_NAME}} environment ready. Run: jupyter lab --ip=0.0.0.0 --no-browser'",
-
-  // Run in the background after the container connects
-  // "postAttachCommand": "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root &",
+  "postStartCommand": "echo 'LEAPS {{TOPIC_NAME}} environment ready.'",
 
   // ==========================================================================
   // VS Code settings
@@ -97,13 +79,6 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-python.debugpy",
-
-        // Jupyter
-        "ms-toolsai.jupyter",
-        "ms-toolsai.jupyter-keymap",
-        "ms-toolsai.jupyter-renderers",
-        "ms-toolsai.vscode-jupyter-cell-tags",
-        "ms-toolsai.vscode-jupyter-slideshow",
 
         // Git
         "eamodio.gitlens",
@@ -159,15 +134,6 @@
         "python.linting.flake8Enabled": true,
         "python.linting.flake8Args": ["--max-line-length=100"],
 
-        // Jupyter
-        "jupyter.notebookFileRoot": "${workspaceFolder}",
-        "jupyter.askForKernelRestart": false,
-        "jupyter.interactiveWindowMode": "perFile",
-        "notebook.cellFocusIndicator": "gutter",
-        "notebook.lineNumbers": "on",
-        "notebook.output.scrolling": true,
-        "notebook.output.textLineLimit": 50,
-
         // Editor
         "editor.fontSize": 14,
         "editor.lineHeight": 22,
@@ -195,7 +161,6 @@
         "files.trimTrailingWhitespace": true,
         "files.insertFinalNewline": true,
         "files.associations": {
-          "*.ipynb": "jupyter",
           "*.md": "markdown",
           "requirements*.txt": "pip-requirements"
         },
@@ -232,6 +197,4 @@
 
   // To rebuild the container: Cmd/Ctrl+Shift+P → "Dev Containers: Rebuild Container"
   // To open a terminal: Cmd/Ctrl+` or Terminal → New Terminal
-  // To start Jupyter: In the terminal, run: jupyter lab
-  // To access Jupyter: Open http://localhost:8888 in your browser
 }

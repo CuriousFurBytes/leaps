@@ -2,19 +2,39 @@
 
 This directory is the heart of leaps. Every subject worth learning lives here as its own
 topic directory — a self-contained knowledge base with structured modules, exercises, test
-questions, resources, and Jupyter notebooks.
+questions, and resources.
 
 Topics are organized into broad categories. Within each topic, modules are numbered and
 sequenced so that a learner (human or AI) can progress logically from fundamentals to
-advanced material. See [CONTRIBUTING.md](../CONTRIBUTING.md) for instructions on adding a
-new topic or module.
+advanced material. See [CONTRIBUTING.md](https://github.com/CuriousFurBytes/leaps/blob/main/CONTRIBUTING.md)
+for instructions on adding a new topic or module.
+
+> [!NOTE]
+> This page is also the landing page of the **published leaps book**. The book is built
+> with [Zensical](https://zensical.org) from this `TOPICS/` directory and deployed to
+> GitHub Pages on every push to `main`. It exposes exactly this index of courses and the
+> courses themselves — nothing else.
+
+---
+
+## Available Courses
+
+These courses are live today. Each links to its topic overview, which in turn links every
+module.
+
+| Course | Description | Difficulty | Modules |
+|---|---|---|---|
+| [Python](python/) | General-purpose, expressive, batteries-included | Beginner | 9 |
+| [Go](go/) | Compiled, garbage-collected, built for concurrency | Intermediate | 3 |
+
+The catalog below maps the full landscape of planned topics.
 
 ---
 
 ## Adding a New Topic
 
-Open an issue using the [New Topic Request](.github/ISSUE_TEMPLATE/new-topic-request.yml)
-template, or follow [CONTRIBUTING.md](../CONTRIBUTING.md) to build it directly.
+Open an issue using the [New Topic Request](https://github.com/CuriousFurBytes/leaps/issues/new?template=new-topic-request.yml)
+template, or follow [CONTRIBUTING.md](https://github.com/CuriousFurBytes/leaps/blob/main/CONTRIBUTING.md) to build it directly.
 
 ---
 
@@ -90,9 +110,9 @@ each language instills.
 
 | Topic | Description | Difficulty | Modules | Status |
 |---|---|---|---|---|
-| [Python](python/) | General-purpose, expressive, batteries-included | Beginner | 12 | Active |
+| [Python](python/) | General-purpose, expressive, batteries-included | Beginner | 9 | Active |
+| [Go](go/) | Compiled, garbage-collected, built for concurrency | Intermediate | 3 | Active |
 | Rust | Systems language with ownership-based memory safety | Advanced | — | Planned |
-| Go | Compiled, garbage-collected, built for concurrency | Intermediate | — | Planned |
 | JavaScript | The language of the web; event-driven and prototype-based | Beginner | — | Planned |
 | Haskell | Purely functional language; mathematical and rigorous | Expert | — | Planned |
 | C | Foundation of systems programming; manual memory management | Intermediate | — | Planned |

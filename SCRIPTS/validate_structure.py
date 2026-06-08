@@ -450,7 +450,7 @@ def fix_missing_module_files(module_dir: Path) -> list[str]:
 
 # Directories inside a topic root that are NOT module directories
 _TOPIC_NON_MODULE_DIRS = {
-    "notebooks", "labs", "assets", "environments", "archive",
+    "labs", "assets", "environments", "archive",
     "code", "exercises", "tests", "notes", "references",
     "simulations", "tools", "docs", "diagrams", "datasets",
 }

@@ -15,7 +15,7 @@ Prompts in this library automate the most time-consuming parts of building and m
 - **Grading** — Evaluate test answers and record scores in a consistent format
 - **Knowledge graph maintenance** — Find and add cross-links between related topics
 - **Reinforcement** — Generate spaced-repetition sessions targeting your weak areas
-- **Interactive content** — Generate Jupyter notebooks and hands-on labs
+- **Interactive content** — Generate hands-on labs
 
 Prompts do not replace your judgment. They accelerate the scaffolding work so you can spend your time understanding, not formatting.
 
@@ -52,8 +52,7 @@ Prompts are designed to be chainable. A typical "start a new topic" workflow:
 3. generate-module.md     → Fill in each module (repeat)
 4. generate-exercises.md  → Expand exercise sets
 5. generate-test.md       → Create module tests
-6. generate-notebook.md   → Add interactive notebooks
-7. knowledge-graph-update.md → Connect to other topics
+6. knowledge-graph-update.md → Connect to other topics
 ```
 
 A typical "study session" workflow:
@@ -98,7 +97,7 @@ Prompts for generating and grading tests.
 Prompts for maintaining cross-links and relationships between topics.
 
 ### Interactive Content
-Prompts for Jupyter notebooks and hands-on labs.
+Prompts for hands-on labs.
 
 ### Reinforcement
 Prompts for spaced repetition and targeted review.
@@ -116,7 +115,6 @@ Prompts for spaced repetition and targeted review.
 | [`grade-test.md`](grade-test.md) | Assessment | Grade a completed test, record the score, and generate reinforcement recommendations |
 | [`answer-questions.md`](answer-questions.md) | Learning Continuation | Read and answer all open questions in a module's QUESTIONS.md |
 | [`cross-reference.md`](cross-reference.md) | Knowledge Graph | Find conceptual connections between topics and add bidirectional wiki-links |
-| [`generate-notebook.md`](generate-notebook.md) | Interactive Content | Generate a Jupyter notebook with theory, visualizations, and exercises for a module |
 | [`generate-exercises.md`](generate-exercises.md) | Content Creation | Expand a module's EXERCISES.md with new problems across difficulty levels |
 | [`reinforcement-session.md`](reinforcement-session.md) | Reinforcement | Run a spaced repetition session targeting weak areas from grading history |
 | [`generate-lab.md`](generate-lab.md) | Interactive Content | Generate an interactive hands-on lab with step-by-step exercises and expected outcomes |

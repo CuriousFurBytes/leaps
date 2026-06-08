@@ -231,7 +231,7 @@ def count_modules(topic_dir: Path) -> int:
     return sum(
         1 for d in topic_dir.iterdir()
         if d.is_dir() and not d.name.startswith(".")
-        and d.name not in ("notebooks", "labs", "assets")
+        and d.name not in ("labs", "assets")
     )
 
 

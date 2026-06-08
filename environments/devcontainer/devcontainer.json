@@ -9,8 +9,6 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-toolsai.jupyter",
-        "ms-toolsai.jupyter-renderers",
         "eamodio.gitlens",
         "yzhang.markdown-all-in-one",
         "davidanson.vscode-markdownlint",
@@ -23,15 +21,13 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "jupyter.askForKernelRestart": false
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
       }
     }
   },
-  "postCreateCommand": "pip install jupyter numpy scipy matplotlib sympy pandas requests pytest black ruff ipywidgets && echo 'leaps environment ready!'",
-  "forwardPorts": [8888, 8080],
+  "postCreateCommand": "pip install numpy scipy matplotlib sympy pandas requests pytest black ruff && echo 'leaps environment ready!'",
+  "forwardPorts": [8080],
   "portsAttributes": {
-    "8888": { "label": "Jupyter Notebook", "onAutoForward": "notify" },
     "8080": { "label": "Preview Server", "onAutoForward": "notify" }
   },
   "remoteUser": "vscode"

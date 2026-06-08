@@ -94,7 +94,7 @@ content that sounds correct and complete but stops exactly at the surface.
 
 A module that lists the names of Python's data structures is not a learning resource.
 A module that explains why a `dict` lookup is O(1) while a `list` search is O(n),
-demonstrates the performance difference with a notebook, and gives exercises that
+demonstrates the performance difference with a worked example, and gives exercises that
 require the learner to choose the right structure — that is a learning resource.
 
 Ask yourself: "After working through this module, can a learner solve a new problem
@@ -119,7 +119,7 @@ because confident fabrication is a serious failure in an educational context.
 ### Principle 3: Examples Must Be Runnable
 
 Code examples in module notes must be syntactically correct and produce the stated
-output. Jupyter notebooks must run top-to-bottom in a clean kernel.
+output. A reader copying a snippet into a fresh environment must get the documented result.
 
 When writing code examples:
 - Test the logic mentally step by step before writing the output comment
@@ -144,7 +144,7 @@ Before considering a contribution complete, run:
 ```bash
 python SCRIPTS/validate_structure.py
 python SCRIPTS/find_broken_links.py
-python SCRIPTS/validate_notebooks.py   # if adding notebooks
+zensical build --clean   # confirm the published book still builds
 ```
 
 These scripts exist precisely so that agents (and humans) have an objective signal

@@ -5,9 +5,10 @@
 - [ ] New topic (new directory under `TOPICS/`)
 - [ ] New module (new module inside an existing topic)
 - [ ] Content improvement (corrections, clarifications, additional depth)
-- [ ] Bug fix (broken link, wrong structure, invalid notebook)
+- [ ] Bug fix (broken link, wrong structure)
 - [ ] Script / tooling change (`SCRIPTS/`, `tools/`)
 - [ ] Template update (`TEMPLATES/`)
+- [ ] Docs site change (`zensical.toml`, book build/deploy)
 - [ ] GitHub Actions / CI change (`.github/workflows/`)
 
 ---
@@ -60,12 +61,6 @@
 - [ ] All code blocks have a language annotation (` ```python `, ` ```rust `, etc.)
 - [ ] No trailing whitespace, no Windows line endings
 
-### Notebooks (if applicable)
-
-- [ ] Notebook runs top-to-bottom without errors in a clean kernel
-- [ ] Notebook outputs are cleared before committing
-- [ ] Notebook is linked from the corresponding module's `README.md`
-
 ### Links
 
 - [ ] All internal links (`[[wiki-links]]` and `[text](path)`) have been tested
@@ -79,7 +74,7 @@
 
 - [ ] Ran `python SCRIPTS/validate_structure.py` — no errors
 - [ ] Ran `python SCRIPTS/find_broken_links.py` — no broken links
-- [ ] Ran `python SCRIPTS/validate_notebooks.py` — no invalid notebooks (if applicable)
+- [ ] Ran `zensical build --clean` — the book builds without errors (if docs changed)
 - [ ] Opened changed files in Obsidian and verified rendering (if applicable)
 
 **Notes:**
@@ -88,7 +83,7 @@
 
 ## Screenshots
 
-<!-- If this PR changes rendered output (diagrams, notebook output, Obsidian rendering),
+<!-- If this PR changes rendered output (diagrams, the published book, Obsidian rendering),
      attach before/after screenshots here. Delete this section if not applicable. -->
 
 ---

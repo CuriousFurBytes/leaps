@@ -11,7 +11,7 @@
 1. Choose a project at or slightly above your current level.
 2. **Don't use tutorials for your chosen project.** Tutorials are for learning, projects are for applying.
 3. Document your attempt using the [Project Attempt Template](#project-attempt-template) at the bottom.
-4. When you finish, link the result (repo, notebook, demo) in the table in the topic README.
+4. When you finish, link the result (repo, demo) in the table in the topic README.
 
 ---
 
@@ -237,7 +237,7 @@ When you attempt a project, create a folder in this topic's directory and copy t
 
 ## Link / Location
 
-{{LINK_TO_REPO_NOTEBOOK_OR_FILE}}
+{{LINK_TO_REPO_OR_FILE}}
 
 ## What I Learned
 

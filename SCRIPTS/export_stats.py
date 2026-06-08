@@ -298,7 +298,7 @@ def scan_topic(topic_dir: Path) -> TopicStats:
     search_dir = modules_dir if modules_dir.is_dir() else topic_dir
     for entry in sorted(search_dir.iterdir()):
         if entry.is_dir() and not entry.name.startswith(".") \
-                and entry.name not in ("notebooks", "labs", "assets"):
+                and entry.name not in ("labs", "assets"):
             mod = scan_module(entry)
             ts.modules.append(mod)
             ts.question_count += mod.question_count

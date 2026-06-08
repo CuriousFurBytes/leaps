@@ -41,9 +41,6 @@ python SCRIPTS/spaced_repetition.py
 
 # Set up the learning environment
 python SCRIPTS/setup_environment.py
-
-# Validate Jupyter notebooks
-python SCRIPTS/validate_notebooks.py
 ```
 
 ---
@@ -60,7 +57,6 @@ python SCRIPTS/validate_notebooks.py
 | [`knowledge_graph.py`](#knowledge_graphpy) | Build a knowledge graph from wiki-links | `--format json\|dot\|markdown`, `--output` |
 | [`update_index.py`](#update_indexpy) | Regenerate `TOPICS/README.md` index | `--preview` |
 | [`export_stats.py`](#export_statspy) | Export aggregated learning statistics | `--output`, `--format json\|markdown` |
-| [`validate_notebooks.py`](#validate_notebookspy) | Validate Jupyter `.ipynb` files | `--clear-output`, exits 1 on violations |
 | [`spaced_repetition.py`](#spaced_repetitionpy) | Generate SM-2 spaced repetition study schedule | `--topic`, `--days` |
 | [`setup_environment.py`](#setup_environmentpy) | Bootstrap the learning environment | `--check-only` |
 
@@ -279,24 +275,6 @@ usage: export_stats.py [-h] [--output FILE] [--format {json,markdown}]
 - Global completion percentage
 - Strong/weak area identification
 - Review recommendations
-
----
-
-### `validate_notebooks.py`
-
-Validates all `.ipynb` Jupyter notebooks in the repository.
-
-```
-usage: validate_notebooks.py [-h] [--clear-output] [--dir DIR]
-```
-
-**Checks:**
-
-- Valid JSON structure
-- Has title markdown cell and objectives cell
-- No stale execution counts (warns)
-- All cells have source content
-- Complete metadata
 
 ---
 

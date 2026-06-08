@@ -225,7 +225,7 @@ def find_module_dirs(topic_dir: Path) -> list[Path]:
     return sorted(
         d for d in topic_dir.iterdir()
         if d.is_dir() and not d.name.startswith(".")
-        and d.name not in ("notebooks", "labs", "assets")
+        and d.name not in ("labs", "assets")
     )
 
 

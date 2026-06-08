@@ -10,7 +10,7 @@ Learning is interrupted when setup fails. Reproducible environments mean:
 
 - The same code runs the same way for every learner
 - You can blow away and rebuild without fear
-- Notebooks and exercises work without "it works on my machine" debugging
+- Labs and exercises work without "it works on my machine" debugging
 - Dependencies are explicit and versioned
 
 ---
@@ -27,12 +27,12 @@ python -m venv .venv
 source .venv/bin/activate          # Linux/macOS
 .venv\Scripts\activate             # Windows
 
-pip install jupyter numpy scipy matplotlib sympy pandas requests pytest
+pip install numpy scipy matplotlib sympy pandas requests pytest
 
 # --- OR with uv (faster) ---
 uv venv
 source .venv/bin/activate
-uv pip install jupyter numpy scipy matplotlib sympy pandas requests pytest
+uv pip install numpy scipy matplotlib sympy pandas requests pytest
 ```
 
 **When to use:** You want the fastest startup, you trust your host Python, and you are working on a single topic at a time.
@@ -51,10 +51,8 @@ docker compose up
 
 # Or build and run manually:
 docker build -t leaps ./environments/docker/
-docker run -p 8888:8888 -v $(pwd):/workspace leaps
+docker run -it -v $(pwd):/workspace leaps bash
 ```
-
-Open JupyterLab at: `http://localhost:8888`
 
 **When to use:** You need a clean slate, you are on a machine where you cannot install packages globally, or you want to ensure exact reproducibility.
 
@@ -77,7 +75,7 @@ Best for a fully configured VS Code experience with zero manual setup.
 # Done. All extensions and packages are installed automatically.
 ```
 
-**When to use:** You use VS Code as your primary editor and want extensions, linting, and Python/Jupyter all pre-configured with no manual steps.
+**When to use:** You use VS Code as your primary editor and want extensions, linting, and Python all pre-configured with no manual steps.
 
 **Drawbacks:** Requires Docker and VS Code; slower first build than venv.
 
@@ -93,8 +91,7 @@ Best for topics heavy in scientific computing, machine learning, or when you nee
 # Create environment from scratch
 conda create -n leaps python=3.12
 conda activate leaps
-conda install jupyter numpy scipy matplotlib sympy pandas scikit-learn
-conda install -c conda-forge jupyterlab
+conda install numpy scipy matplotlib sympy pandas scikit-learn
 
 # Or from a topic's environment.yml if one exists
 conda env create -f topics/<topic>/environment.yml
@@ -104,6 +101,20 @@ conda activate leaps-<topic>
 **When to use:** Topics involving ML/data science, when you need optimized linear algebra libraries, or when a topic's guide specifies a conda environment.
 
 **Drawbacks:** Slower solver than uv/pip; larger disk footprint.
+
+---
+
+## Previewing the Book
+
+The learning material is published as a [Zensical](https://zensical.org/) book (built from the `TOPICS/` directory and deployed to GitHub Pages). To preview the rendered book locally:
+
+```bash
+pip install zensical
+zensical serve     # local preview with live reload
+zensical build --clean   # static site in site/
+```
+
+The published site is rebuilt and deployed automatically on every push to `main` via `.github/workflows/docs.yml`.
 
 ---
 
