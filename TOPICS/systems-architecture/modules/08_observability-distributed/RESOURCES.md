@@ -1,0 +1,12 @@
+# Resources: Module 08 — Observability in Distributed Systems
+
+> Verified resources for this module. Resources will be expanded when module content is finalized.
+
+---
+
+## Planned Resources
+
+Relevant chapters from:
+- "Designing Data-Intensive Applications" by Martin Kleppmann
+- "Building Microservices" by Sam Newman
+- Official documentation for tools covered in this module
