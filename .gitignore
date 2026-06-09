@@ -185,6 +185,10 @@ _personal/
 # Ignore: per-machine state
 .obsidian/plugins/*/data.json
 
+# ── Claude Code tooling ───────────────────────────────────────────────────────
+# Agent worktrees and session state — machine-specific, never commit
+.claude/
+
 # ── Temporary / Misc ──────────────────────────────────────────────────────────
 *.tmp
 *.temp
