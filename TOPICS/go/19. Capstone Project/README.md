@@ -127,39 +127,39 @@ This module requires all prior modules (0–18). The following modules are espec
 
 ## Functional Requirements
 
-The following requirements apply to all four project briefs. Where the requirement is brief-specific, the URL shortener version is shown; adapt to your chosen brief.
+All requirements apply to every brief. Where brief-specific, the URL shortener version is shown.
 
-1. **HTTP API with the Go 1.22 router** — Use `net/http` and Go 1.22's pattern-matching `http.ServeMux`. No third-party router. At minimum: one `POST` endpoint (create), one `GET` endpoint (read/redirect), one `GET` endpoint (stats/list), and one `DELETE` endpoint.
+1. **HTTP API with the Go 1.22 router** — `net/http` with Go 1.22 pattern-matching `http.ServeMux`. No third-party router. At minimum: `POST` (create), `GET` (read/redirect), `GET` (stats/list), `DELETE`.
 
-2. **Persistence via `database/sql`** — Store data in a SQL database using the standard `database/sql` package. Use SQLite (via `modernc.org/sqlite` — a pure Go driver that requires no C toolchain) or Postgres (via `lib/pq` or `jackc/pgx/v5`). All SQL must run through prepared statements (no raw string interpolation of user input).
+2. **Persistence via `database/sql`** — SQLite (`modernc.org/sqlite`, pure Go, no CGO) or Postgres. All queries use parameterized statements — no raw user input in SQL strings.
 
-3. **`context` for cancellation and timeouts** — Every database query and HTTP handler must accept and respect a `context.Context`. Set a per-request timeout in middleware. Use `context.WithTimeout` for database operations.
+3. **`context` throughout** — Every store method and HTTP handler accepts `context.Context`. Set a per-request timeout in middleware using `context.WithTimeout`.
 
-4. **Structured error types** — Define at least one custom error type (e.g., `NotFoundError`, `ValidationError`, `ConflictError`). In HTTP handlers, use a central error-mapping function to translate errors to appropriate status codes (404, 400, 409, 500).
+4. **Structured error types** — At least `NotFoundError`, `ValidationError`, `ConflictError`. A central `writeError` function maps them to 404/400/409/500.
 
-5. **Table-driven tests including an `httptest` test** — Write at least one table-driven unit test for the store layer and at least one `httptest`-based integration test that makes HTTP requests to your handlers.
+5. **Table-driven tests + `httptest`** — At least one table-driven unit test for the store and at least one `httptest`-based integration test per handler.
 
-6. **Configuration via flags and environment variables** — Use the `flag` package for CLI flags. Respect environment variables as overrides (e.g., `PORT`, `DATABASE_URL`). Implement a `Config` struct to hold all configuration.
+6. **Config from flags and env vars** — `flag` package for flags; env vars (`PORT`, `DATABASE_URL`) override flags. A `Config` struct holds all configuration.
 
-7. **Structured logging with `log/slog`** — Use `log/slog` (standard library, Go 1.21+) for all log output. Log at appropriate levels: `Debug`, `Info`, `Warn`, `Error`. Include request-scoped fields (method, path, status code, duration) in access logs.
+7. **Structured logging with `log/slog`** — All log output through `log/slog`. JSON handler in production. Access logs include method, path, status, duration.
 
-8. **Graceful shutdown** — On SIGINT or SIGTERM, stop accepting new connections, wait for in-flight requests to complete (with a deadline), close the database connection pool, and exit cleanly.
+8. **Graceful shutdown** — SIGINT/SIGTERM → stop accepting → wait for in-flight requests → close DB → exit 0.
 
-9. **Multi-stage Dockerfile** — Write a Dockerfile with at least two stages: a builder stage that compiles the binary and a minimal runtime stage (`gcr.io/distroless/static:nonroot` or `alpine:3`) that copies only the binary. The final image must not contain a Go compiler or source code.
+9. **Multi-stage Dockerfile** — Builder stage compiles; runtime stage (distroless or alpine) contains only the binary.
 
-10. **CI workflow** — Write a GitHub Actions workflow (`.github/workflows/ci.yml`) that on every push: installs Go, runs `go vet`, runs `staticcheck` (or `golangci-lint`), runs `go test ./...` with the race detector, and builds the binary. On tagged pushes, publish a release (using `goreleaser` or the `actions/upload-artifact` approach).
+10. **CI workflow** — GitHub Actions: `go vet`, race-enabled `go test`, linter, binary build on every push; release artifact on tagged push.
 
 ---
 
 ## Non-Functional Requirements
 
-1. **No panics in production code paths.** Panics are permitted in `init()` for unrecoverable configuration errors only.
-2. **No global mutable state.** All shared state must be encapsulated in structs passed via constructors.
-3. **All error returns must be handled.** `go vet` and `errcheck` must pass cleanly.
-4. **The service must be compilable with `go build ./...` and testable with `go test -race ./...` with no failures.**
-5. **The Dockerfile must produce a working image.** `docker run` must start the service and serve requests.
-6. **At least 8 modules** from the Go topic must be demonstrably used. Record which modules you used and how in your [PROJECTS.md](../PROJECTS.md) entry.
-7. **The project README.md** (in your project directory, separate from this module) must describe: what the service does, how to build it, how to run it, how to run the tests, and at least three design decisions you made and why.
+- No panics in production code paths (only `init()` for unrecoverable config errors)
+- No global mutable state — all shared state in structs, injected via constructors
+- All error returns handled — `go vet` and `errcheck` must pass
+- `go build ./...` and `go test -race ./...` must succeed with no failures
+- Docker image must start and serve requests
+- At least 8 Go topic modules demonstrably used; documented in [PROJECTS.md](../PROJECTS.md)
+- Project `README.md` covers: what it does, build, run, test, and at least three design decisions
 
 ---
 
@@ -169,7 +169,7 @@ You are not required to follow this architecture exactly — these are recommend
 
 ### Package Layout
 
-```
+```text
 myshortener/          ← module root (go mod init github.com/you/myshortener)
 ├── cmd/
 │   └── server/
@@ -203,7 +203,7 @@ myshortener/          ← module root (go mod init github.com/you/myshortener)
 Define these in `internal/store/store.go`. Only signatures are shown here — implementations are yours to write.
 
 ```go
-// URLRecord represents a stored short URL. Adapt the fields to your chosen brief.
+// internal/store/store.go — data model and persistence interface
 type URLRecord struct {
     Code      string
     LongURL   string
@@ -211,74 +211,33 @@ type URLRecord struct {
     HitCount  int64
 }
 
-// Store is the primary persistence interface. Every method accepts a context
-// so database operations can be cancelled or timed out by callers.
 type Store interface {
-    // Create stores a new short URL record. Returns ConflictError if the code
-    // already exists.
-    Create(ctx context.Context, record URLRecord) error
-
-    // Get returns the record for a given short code. Returns NotFoundError if
-    // the code does not exist.
-    Get(ctx context.Context, code string) (URLRecord, error)
-
-    // IncrementHits atomically increments the hit counter for a short code.
+    Create(ctx context.Context, record URLRecord) error   // ConflictError if code exists
+    Get(ctx context.Context, code string) (URLRecord, error) // NotFoundError if missing
     IncrementHits(ctx context.Context, code string) error
-
-    // Delete removes the record for a given short code. Returns NotFoundError
-    // if the code does not exist.
-    Delete(ctx context.Context, code string) error
-
-    // Close releases all resources held by the store. Called during graceful shutdown.
+    Delete(ctx context.Context, code string) error        // NotFoundError if missing
     Close() error
 }
-```
 
-```go
-// Custom error types — define these in internal/store/errors.go (or similar)
+// internal/store/errors.go — custom error types
+type NotFoundError  struct{ Resource, ID string }
+type ValidationError struct{ Field, Message string }
+type ConflictError  struct{ Resource, ID string }
 
-// NotFoundError is returned when a requested resource does not exist.
-type NotFoundError struct {
-    Resource string // e.g., "short code"
-    ID       string // e.g., the code that was not found
-}
-
-// ValidationError is returned when input fails validation.
-type ValidationError struct {
-    Field   string
-    Message string
-}
-
-// ConflictError is returned when a creation would violate a uniqueness constraint.
-type ConflictError struct {
-    Resource string
-    ID       string
-}
-```
-
-```go
-// Handler wires HTTP handlers to a store. Define in internal/api/handler.go.
+// internal/api/handler.go — injected dependencies
 type Handler struct {
-    store  store.Store  // injected via constructor; never a global
+    store  store.Store
     logger *slog.Logger
-    // add other dependencies here as needed
 }
-
 func NewHandler(s store.Store, logger *slog.Logger) *Handler
-```
 
-```go
-// Config holds all service configuration. Define in internal/config/config.go.
+// internal/config/config.go
 type Config struct {
     Port        int
     DatabaseURL string
     LogLevel    slog.Level
-    // add fields as needed
 }
-
-// Parse reads configuration from command-line flags and environment variables.
-// Environment variables take precedence over flags.
-func Parse() (Config, error)
+func Parse() (Config, error) // env vars override flags
 ```
 
 > [!NOTE]
