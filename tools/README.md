@@ -18,7 +18,7 @@ Pre-configured settings and extension recommendations for the best VS Code exper
 
 | File | Purpose |
 |---|---|
-| `vscode-settings.json` | Workspace settings (formatting, Markdown, Jupyter, Python) |
+| `vscode-settings.json` | Workspace settings (formatting, Markdown, Python) |
 | `vscode-extensions.json` | Recommended extension list with descriptions |
 
 **How to use:**
@@ -49,16 +49,16 @@ Recommended Obsidian plugins for leaps:
 
 ---
 
-### MkDocs
+### Zensical
 
-Publish the leaps knowledge base as a static site.
+The leaps knowledge base is published as a [Zensical](https://zensical.org/) book — the modern static-site generator by the Material for MkDocs team.
 
-A `mkdocs/` subdirectory (add when needed) can hold `mkdocs.yml` with the [Material theme](https://squidfunk.github.io/mkdocs-material/) configured for the leaps folder structure.
+Configuration lives in `zensical.toml` at the repo root (`docs_dir = "TOPICS"`). The site is built to `site/` and deployed to GitHub Pages on every push to `main` via `.github/workflows/docs.yml`.
 
 ```bash
-pip install mkdocs mkdocs-material
-mkdocs serve     # local preview
-mkdocs build     # static site in site/
+pip install zensical
+zensical serve            # local preview with live reload
+zensical build --clean    # static site in site/
 ```
 
 ---

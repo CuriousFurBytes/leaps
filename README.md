@@ -2,7 +2,7 @@
 
 > **Learning Environment for Any Progressive Subject**
 
-[![CI](https://img.shields.io/github/actions/workflow/status/your-org/leaps/ci.yml?label=CI&style=flat-square)](https://github.com/your-org/leaps/actions)
+[![Book](https://img.shields.io/github/actions/workflow/status/CuriousFurBytes/leaps/docs.yml?label=book&style=flat-square)](https://curiousfurbytes.github.io/leaps/)
 [![Topics](https://img.shields.io/badge/topics-growing-blue?style=flat-square)](#topics)
 [![Modules](https://img.shields.io/badge/modules-structured-green?style=flat-square)](#how-it-works)
 [![AI Native](https://img.shields.io/badge/AI-native-purple?style=flat-square)](AGENTS.md)
@@ -31,11 +31,12 @@ Every module is a first-class artifact: deeply structured, cross-linked, graded,
 7. [Progress Tracking](#progress-tracking)
 8. [Testing & Grading](#testing--grading)
 9. [Cross-Linking / Knowledge Graph](#cross-linking--knowledge-graph)
-10. [Interactive Learning](#interactive-learning)
-11. [Obsidian Compatibility](#obsidian-compatibility)
-12. [Learning Workflow](#learning-workflow)
-13. [Contributing](#contributing)
-14. [License](#license)
+10. [Published Book (GitHub Pages)](#published-book-github-pages)
+11. [Interactive Learning](#interactive-learning)
+12. [Obsidian Compatibility](#obsidian-compatibility)
+13. [Learning Workflow](#learning-workflow)
+14. [Contributing](#contributing)
+15. [License](#license)
 
 ---
 
@@ -82,6 +83,7 @@ leaps/
 ├── README.md                  # This file — start here
 ├── CONTRIBUTING.md            # How to contribute as a human or agent
 ├── AGENTS.md                  # Operational manual for AI agents (read first)
+├── zensical.toml              # Config for the published book (docs_dir = TOPICS/)
 │
 ├── PROMPTS/                   # Reusable prompt templates for AI agents
 │   ├── topic-creation.md      # Prompt for creating a new topic from scratch
@@ -122,7 +124,7 @@ leaps/
 │   └── .../                   # Any topic, any domain
 │
 ├── .github/                   # GitHub configuration
-│   ├── workflows/             # CI/CD workflows (lint, validate, stats)
+│   ├── workflows/             # docs.yml — builds the book & deploys to Pages
 │   └── ISSUE_TEMPLATE/        # Templates for topic requests, bug reports
 │
 ├── assets/                    # Images, diagrams, and static files
@@ -138,9 +140,6 @@ leaps/
 │   ├── architecture.md        # Detailed architecture decisions
 │   ├── agent-guide.md         # Extended guide for AI agent authors
 │   └── faq.md                 # Frequently asked questions
-│
-├── notebooks/                 # Standalone Jupyter notebooks
-│   └── [topic]/               # Notebooks organized by topic
 │
 └── environments/              # Reproducible learning environments
     ├── python/                # Python environment (requirements.txt, Dockerfile)
@@ -286,7 +285,6 @@ cd leaps
 # "Grade my test in TOPICS/python/modules/03_control_flow/TEST.md"
 # "Answer my questions in TOPICS/rust/modules/02_ownership/QUESTIONS.md"
 # "Cross-reference Rust ownership with C memory management"
-# "Generate interactive notebook for Python module 4"
 # "Show my progress in Python"
 ```
 
@@ -345,7 +343,6 @@ The following natural-language commands are understood by agents configured with
 | `"Grade my test in module 3"` | Reads TEST.md, grades it, appends results to ANSWERS.md |
 | `"Answer my questions in QUESTIONS.md"` | Appends timestamped answers; never deletes existing content |
 | `"Cross-reference Rust ownership with C memory management"` | Adds cross-links in both topic READMEs and relevant module files |
-| `"Generate interactive notebook for module 4"` | Creates a `.ipynb` in `notebooks/[topic]/` |
 | `"What topics are available?"` | Lists all directories under `TOPICS/` with their summaries |
 | `"Show my progress in Python"` | Reads and summarizes `TOPICS/python/PROGRESS.md` |
 | `"Create a project for module 5"` | Appends a new project spec to `PROJECTS.md` |
@@ -485,7 +482,7 @@ leaps builds a knowledge graph incrementally as topics and modules are created. 
 [[memory-management]]             → links to TOPICS/memory-management/README.md
 [[python#decorators]]             → links to the Decorators section in Python
 [[shared/glossary#closure]]       → links to the closure entry in the global glossary
-[[notebooks/python/04_sorting]]   → links to a specific notebook
+[[python/05_data_structures]]     → links to a specific module
 ```
 
 ### When Cross-Links Are Added
@@ -511,23 +508,68 @@ As the repo grows, the web of cross-links becomes a navigable knowledge graph. Y
 
 ---
 
+## Published Book (GitHub Pages)
+
+The learning material is published as a browsable book at
+**<https://curiousfurbytes.github.io/leaps/>**, built with
+[Zensical](https://zensical.org) — the modern static-site generator from the
+Material for MkDocs team.
+
+### What the book contains
+
+The book deliberately exposes **only** the learning material:
+
+- the **index of courses** (the landing page, generated from `TOPICS/README.md`), and
+- the **courses themselves** — every topic and all of its modules.
+
+Repository tooling (`AGENTS.md`, `PROMPTS/`, `SCRIPTS/`, `TEMPLATES/`, `docs/`,
+`environments/`, …) is intentionally **not** included. This is enforced by
+pointing Zensical's content directory at `TOPICS/`:
+
+```toml
+# zensical.toml
+[project]
+site_name = "leaps"
+docs_dir  = "TOPICS"
+```
+
+### How navigation works
+
+Navigation is **implicit** — it is derived automatically from the `TOPICS/`
+directory tree. Each directory's `README.md` becomes that section's index page.
+This means **adding a new topic or module automatically adds it to the book** with
+no configuration changes.
+
+### Build & deploy
+
+Deployment is fully automated. On every push to `main` (i.e. when a PR is
+merged), the [`.github/workflows/docs.yml`](.github/workflows/docs.yml) workflow
+builds the book and publishes it to GitHub Pages:
+
+```bash
+pip install zensical
+zensical build --clean   # outputs the static site to ./site/
+```
+
+> [!NOTE]
+> One-time repository setup: under **Settings → Pages → Build and deployment**,
+> set the **Source** to **GitHub Actions**.
+
+### Preview locally
+
+```bash
+pip install zensical
+zensical serve           # live-reloading preview at http://localhost:8000
+```
+
+> [!TIP]
+> Because the book is generated directly from the Markdown in `TOPICS/`, there is
+> no separate authoring step — write a module the normal way and it appears in the
+> book on the next deploy.
+
+---
+
 ## Interactive Learning
-
-### Jupyter Notebooks
-
-Notebooks in `notebooks/[topic]/` provide interactive, runnable versions of module content. They are generated by AI agents on request and follow a fixed 9-section structure:
-
-1. Title and overview cell
-2. Learning objectives (bulleted list)
-3. Prerequisites (with links)
-4. Theory with inline visualizations
-5. Live code demonstrations (runnable)
-6. Guided exercises (scaffolded cells)
-7. Challenges (unscaffolded — for independent problem-solving)
-8. Summary
-9. References and further reading
-
-Notebooks are named `01_descriptive_name.ipynb` to match their corresponding module and are cross-linked bidirectionally from the module's `RESOURCES.md`.
 
 ### Interactive Labs
 
@@ -542,9 +584,8 @@ Notebooks are named `01_descriptive_name.ipynb` to match their corresponding mod
 
 For topics that benefit from visual intuition (sorting algorithms, calculus, networking, physics, machine learning), agents generate:
 
-- Mermaid diagrams embedded directly in module README files
-- matplotlib/seaborn figures inside Jupyter notebooks
-- Interactive ipywidgets for parameter exploration
+- Mermaid diagrams embedded directly in module README files (rendered natively in the book)
+- Static figures and images committed alongside the module and embedded in Markdown
 - ASCII art diagrams for concepts best shown in plain text
 
 ---

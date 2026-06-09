@@ -19,7 +19,7 @@ Welcome to leaps. This guide covers everything you need to know to contribute me
 9. [Improving Existing Content](#improving-existing-content)
 10. [Adding Exercises](#adding-exercises)
 11. [Adding Tests](#adding-tests)
-12. [Adding Notebooks](#adding-notebooks)
+12. [Previewing the Book](#previewing-the-book)
 13. [Cross-Linking](#cross-linking)
 14. [Citation Standards](#citation-standards)
 15. [Pull Request Process](#pull-request-process)
@@ -48,7 +48,7 @@ leaps is a living knowledge base. It is not a static textbook. Every module grow
 | **Learners** | Notes, questions, exercise solutions, journal entries, resource recommendations |
 | **Experts** | Deep explanations, historical context, edge cases, advanced modules |
 | **Educators** | Module structure improvements, pedagogical sequencing, test design |
-| **AI agents** | Content generation, cross-linking, test grading, notebook creation |
+| **AI agents** | Content generation, cross-linking, test grading |
 | **Developers** | Tooling, scripts, validators, CI workflows |
 | **Everyone** | Typo fixes, broken link repairs, clarity improvements |
 
@@ -98,7 +98,7 @@ leaps is a "learn in public" repository. Your questions, test scores, and journa
 - A GitHub account
 - Familiarity with Markdown
 - (Optional) Obsidian for wiki-link navigation
-- (Optional) Python 3.10+ for running notebooks and tooling
+- (Optional) Python 3.10+ for tooling and previewing the book (`pip install zensical`)
 
 ### Fork and Clone
 
@@ -129,7 +129,7 @@ Branches must follow this convention so that CI and reviewers can immediately un
 | Fixing an issue in a module | `fix/topic-module-issue` | `fix/python-module-03-broken-examples` |
 | Tooling or scripts | `tooling/description` | `tooling/lint-improvements` |
 | Documentation | `docs/description` | `docs/contributing-update` |
-| Templates | `template/description` | `template/notebook-format` |
+| Templates | `template/description` | `template/module-format` |
 
 ```bash
 # Example: adding a new module to rust
@@ -183,9 +183,9 @@ leaps/
 │               └── PROJECTS.md
 │
 ├── assets/                    # Images and diagrams
-├── notebooks/                 # Jupyter notebooks by topic
 ├── environments/              # Reproducible learning environments
 ├── tools/                     # Developer tooling
+├── zensical.toml              # Published-book config (docs_dir = TOPICS/)
 └── docs/                      # Extended documentation
 ```
 
@@ -354,7 +354,7 @@ Wiki-links are validated by `./SCRIPTS/lint.sh`. A broken wiki-link (pointing to
   ![Description of image](../../../assets/images/rust/ownership-diagram.svg)
   ```
 - Provide meaningful alt text for every image — this serves both accessibility and search indexing
-- Do not commit binary images larger than 1 MB. For large diagrams, generate them programmatically in notebooks
+- Do not commit binary images larger than 1 MB. For diagrams, prefer Mermaid (rendered natively in the book) or a committed, optimized SVG
 
 ### Line Length
 
@@ -417,7 +417,6 @@ The human-readable module title (used in README headings, links, and UI) uses Ti
 
 - Structured documentation files: `UPPERCASE.md` — `README.md`, `NOTES.md`, `QUESTIONS.md`, `EXERCISES.md`, `TEST.md`, `ANSWERS.md`, `RESOURCES.md`, `PROJECTS.md`, `PROGRESS.md`, `ROADMAP.md`
 - Source code files: `lowercase_with_underscores.ext` or `kebab-case.ext` per language convention
-- Notebooks: `NN_descriptive_name.ipynb` (zero-padded number prefix)
 - Scripts: `kebab-case.sh`, `kebab-case.py`
 - Templates: `lowercase-kebab.md`
 
@@ -642,39 +641,38 @@ Answer keys must explain **why** each answer is correct, not just state the answ
 
 ---
 
-## Adding Notebooks
+## Previewing the Book
 
-### Notebook Standards
+The learning material is published as a static book built with
+[Zensical](https://zensical.org) and deployed to GitHub Pages automatically on
+every push to `main` (see [`.github/workflows/docs.yml`](.github/workflows/docs.yml)).
+The book is generated from the `TOPICS/` directory, so any topic or module you
+add appears in it automatically — there is no separate authoring step and no
+navigation file to maintain.
 
-Jupyter notebooks in `notebooks/[topic]/` must follow the standard structure defined in `TEMPLATES/notebook/notebook_template.ipynb`:
+### Preview your changes locally
 
-1. **Title cell** (Markdown) — Topic, module number, notebook title, brief description
-2. **Setup cell** (Code) — All imports, configuration, and seed values. This cell must run first with no errors.
-3. **Learning objectives** (Markdown) — Numbered list of what the notebook demonstrates
-4. **Prerequisites** (Markdown) — What the reader needs to know; links to relevant modules
-5. **Theory sections** (alternating Markdown and Code cells) — Explanation followed by demonstration
-6. **Interactive exercises** (Markdown + scaffolded Code cells) — Partially complete code with clear instructions
-7. **Challenges** (Markdown + empty Code cells) — Open-ended problems with no scaffolding
-8. **Summary** (Markdown) — Key takeaways in bullet form
-9. **References** (Markdown) — Cited sources and further reading
-
-### Reproducibility Requirements
-
-- Every notebook must run cleanly from top to bottom in a fresh kernel
-- Pin all dependency versions in the corresponding `environments/[topic]/requirements.txt`
-- Set random seeds explicitly wherever randomness is used: `np.random.seed(42)`, `random.seed(42)`, etc.
-- Do not rely on global state — each section should be independently readable
-- Include a `# Run time: ~N minutes` comment in the first code cell if runtime exceeds 2 minutes
-- Clear all outputs before committing — reviewers will re-run the notebook
-
-### Naming
-
-```
-notebooks/[topic]/01_introduction_to_closures.ipynb
-notebooks/[topic]/04_ownership_visualized.ipynb
+```bash
+pip install zensical
+zensical serve        # live-reloading preview at http://localhost:8000
 ```
 
-The number prefix must match the module number the notebook corresponds to.
+### Build it the way CI does
+
+```bash
+zensical build --clean   # renders the static site into ./site/ (git-ignored)
+```
+
+> [!TIP]
+> Before opening a PR, run `zensical build --clean` and confirm it completes
+> without errors and that your new pages render correctly (code blocks, Mermaid
+> diagrams, callouts, and relative links).
+
+> [!NOTE]
+> Authoring rule: write learning content as **Markdown only**. Jupyter notebooks
+> are not part of leaps — notebook integration was removed to keep GitHub Pages
+> deployment simple. Use fenced code blocks, Mermaid diagrams, admonitions, and
+> committed static images for rich content.
 
 ---
 
@@ -778,7 +776,6 @@ Titles must be descriptive and follow this pattern:
 | `fix` | Correcting errors, broken links, or wrong information |
 | `exercise` | Adding or improving exercises |
 | `test` | Adding or improving module tests |
-| `notebook` | Adding or updating Jupyter notebooks |
 | `tooling` | Scripts, validators, CI configuration |
 | `docs` | CONTRIBUTING.md, AGENTS.md, README.md changes |
 | `template` | Template file changes |
@@ -789,7 +786,7 @@ Titles must be descriptive and follow this pattern:
 content: rust/module-05 — add traits and generics module
 fix: python/module-03 — correct output in control flow examples
 exercise: go/module-02 — add debugging exercises
-notebook: calculus/derivatives — add interactive visualization
+docs: contributing — document the Zensical book workflow
 ```
 
 ### PR Description Requirements
@@ -798,7 +795,7 @@ Every PR must include:
 
 1. **Summary** — What does this PR add or change, and why?
 2. **Scope** — Which files were modified? Which topic and modules are affected?
-3. **Testing** — Did you run `./SCRIPTS/lint.sh`? Did you run the examples? Did you run the notebook?
+3. **Testing** — Did you run `./SCRIPTS/lint.sh`? Did you run the examples? Did `zensical build --clean` succeed?
 4. **Checklist** — Confirm all items in the [Educational Quality Review Checklist](#educational-quality-review-checklist)
 5. **Related issues** — Reference any issues this closes: `Closes #42`
 
@@ -906,11 +903,11 @@ Complete this checklist before opening a PR. Every unchecked item is a reason fo
 - [ ] Point values are assigned to every question
 - [ ] Total points are stated
 
-### Notebooks (if applicable)
+### Book Build
 
-- [ ] Notebook runs from top to bottom in a fresh kernel with no errors
-- [ ] All imports are in the first code cell
-- [ ] Random seeds are set explicitly
+- [ ] Content is Markdown only (no `.ipynb` files)
+- [ ] `zensical build --clean` completes without errors
+- [ ] New pages render correctly (code blocks, Mermaid diagrams, callouts, relative links)
 - [ ] All cell outputs are cleared before committing
 
 ### Resources

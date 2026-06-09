@@ -390,7 +390,6 @@ dir([])          # list all methods of a list
 | Notes | [NOTES.md](./NOTES.md) |
 | Answers | [ANSWERS.md](./ANSWERS.md) |
 | Resources | [RESOURCES.md](./RESOURCES.md) |
-| Notebook | [notebooks/01_getting_started.ipynb](./notebooks/01_getting_started.ipynb) |
 
 ---
 

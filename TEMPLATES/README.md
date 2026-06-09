@@ -24,11 +24,10 @@ These templates provide a consistent, rich starting point for every unit of lear
 | **Module Test** | `module/TEST.md` | Structured self-assessment test with scoring | After completing module study |
 | **Module Answers** | `module/ANSWERS.md` | Answer key — AI-facing, not student-facing | Created with TEST.md; review only after attempting the test |
 | **Module Resources** | `module/RESOURCES.md` | Module-specific reference links | For targeted deep dives on module content |
-| **Notebook Template** | `notebook/notebook_template.ipynb` | Jupyter notebook scaffold for interactive exploration | For computational, mathematical, or visual demonstrations |
 | **Lab README** | `lab/README.md` | Guided hands-on lab with setup and exercises | When creating practical, environment-based experiments |
 | **Dockerfile** | `environment/Dockerfile` | Containerized learning environment | For topics requiring specific tool versions or system dependencies |
 | **devcontainer.json** | `environment/devcontainer.json` | VS Code Dev Container configuration | To create a one-click reproducible VS Code dev environment |
-| **requirements.txt** | `environment/requirements.txt` | Python package dependency list by category | For any topic with Python-based exercises or notebooks |
+| **requirements.txt** | `environment/requirements.txt` | Python package dependency list by category | For any topic with Python-based exercises or labs |
 
 ---
 
@@ -58,8 +57,6 @@ topics/
         │   ├── TEST.md                 ← module/TEST.md
         │   ├── ANSWERS.md              ← module/ANSWERS.md
         │   ├── RESOURCES.md            ← module/RESOURCES.md
-        │   ├── notebooks/
-        │   │   └── exploration.ipynb   ← notebook/notebook_template.ipynb
         │   └── labs/
         │       └── README.md           ← lab/README.md
         ├── 01-first-concept/
@@ -87,13 +84,6 @@ topics/
 2. Copy `TEMPLATES/module/README.md` into the new directory
 3. Copy `TEMPLATES/module/EXERCISES.md` and `TEMPLATES/module/TEST.md`
 4. Fill in the module content as you study; don't wait until you "know enough"
-
-### Using the Notebook Template
-
-1. Copy `TEMPLATES/notebook/notebook_template.ipynb` to `modules/XX-name/notebooks/`
-2. Rename descriptively (e.g., `gradient-descent-visualization.ipynb`)
-3. Follow the cell structure; replace placeholder text with real runnable content
-4. Run all cells top-to-bottom before committing
 
 ### Setting Up an Environment
 

@@ -167,8 +167,6 @@ MD044:
     - "GitHub"
     - "GitLens"
     - "Obsidian"
-    - "Jupyter"
-    - "JupyterLab"
     - "NumPy"
     - "Pandas"
     - "Matplotlib"
@@ -177,6 +175,7 @@ MD044:
     - "Mermaid"
     - "Docker"
     - "MkDocs"
+    - "Zensical"
   code_blocks_in_spans: false
 
 # MD045 — Images should have alternate text

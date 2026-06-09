@@ -25,7 +25,6 @@
 - [Exercises](#exercises)
 - [Test](#test)
 - [Projects](#projects)
-- [Notebooks](#notebooks)
 - [Labs](#labs)
 - [Further Reading](#further-reading)
 - [Learning Journal](#learning-journal)
@@ -380,19 +379,6 @@ projects relevant to this module's concepts under the Beginner section.
 
 **Recommended project after this module:**
 {{RECOMMENDED_PROJECT_NAME}} — {{RECOMMENDED_PROJECT_DESCRIPTION}}
-
----
-
-## Notebooks
-
-Interactive Jupyter notebooks for this module are in [`notebooks/`](./notebooks/).
-
-| Notebook | Description |
-|----------|-------------|
-| [`{{NOTEBOOK_1_FILENAME}}.ipynb`](./notebooks/{{NOTEBOOK_1_FILENAME}}.ipynb) | {{NOTEBOOK_1_DESCRIPTION}} |
-| [`{{NOTEBOOK_2_FILENAME}}.ipynb`](./notebooks/{{NOTEBOOK_2_FILENAME}}.ipynb) | {{NOTEBOOK_2_DESCRIPTION}} |
-
-Run notebooks in the provided environment (see `devcontainer.json` or `Dockerfile` at topic root).
 
 ---
 

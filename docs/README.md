@@ -11,6 +11,7 @@ an AI agent.
 | File | What It Covers |
 |---|---|
 | [educational-philosophy.md](educational-philosophy.md) | The learning science principles behind leaps — spaced repetition, active recall, the Feynman technique, and more |
+| [architecture.md](architecture.md) | The key design decisions behind leaps — Markdown-first content, folder conventions, and how the course is published as a Zensical book on GitHub Pages |
 | [obsidian-setup.md](obsidian-setup.md) | How to use this repository as an Obsidian vault — plugins, graph view, Dataview queries, templates |
 | [ai-agents-guide.md](ai-agents-guide.md) | How AI agents should navigate and contribute to leaps — structure, quality standards, common mistakes |
 

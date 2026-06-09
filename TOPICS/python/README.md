@@ -94,7 +94,7 @@ Python 2 reached end-of-life on January 1, 2020. **All new Python code should us
 | Data Science | NumPy, Pandas, Matplotlib | Financial analysis, research |
 | Machine Learning | PyTorch, TensorFlow, scikit-learn | GPT models, image recognition |
 | Automation & Scripting | subprocess, os, pathlib | DevOps pipelines, file processing |
-| Scientific Computing | SciPy, SymPy, Jupyter | Academic research, simulations |
+| Scientific Computing | SciPy, SymPy | Academic research, simulations |
 | Education | turtle, IDLE | Teaching programming fundamentals |
 | Network/Systems | socket, asyncio, Paramiko | Network tools, SSH automation |
 | Cybersecurity | Scapy, pwntools | Security research, CTFs |

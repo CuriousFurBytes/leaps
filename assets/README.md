@@ -1,6 +1,6 @@
 # Assets
 
-Static assets for the **leaps** knowledge base: images, diagrams, screenshots, and other binary or non-text files referenced from Markdown notes and Jupyter notebooks.
+Static assets for the **leaps** knowledge base: images, diagrams, screenshots, and other binary or non-text files referenced from Markdown notes.
 
 ---
 
@@ -67,7 +67,7 @@ Mermaid diagrams render in:
 - Obsidian (with the Mermaid plugin or natively in newer versions)
 - VS Code (with the `bierner.markdown-mermaid` extension)
 - GitHub Markdown
-- MkDocs with the `pymdownx.superfences` extension
+- The published Zensical book
 
 Use Mermaid for: flowcharts, sequence diagrams, state machines, ER diagrams, Git graphs, simple architecture diagrams.
 
@@ -90,7 +90,7 @@ Store screenshots and exported plots in `assets/images/`. Compress PNGs before c
 optipng -o7 assets/images/python-debugger-screenshot.png
 ```
 
-Generated plots from notebooks (matplotlib, plotly exports) should be regenerated from the notebook rather than committed — only commit plots that are too expensive to regenerate or that need to be viewed without running the notebook.
+Generated plots (matplotlib, plotly exports) should be regenerated from their source script rather than committed — only commit plots that are too expensive to regenerate or that need to be viewed without running the code.
 
 ---
 
@@ -142,13 +142,13 @@ git add .gitattributes
 
 ## Auditing Orphaned Assets
 
-To find assets not referenced by any Markdown or notebook file:
+To find assets not referenced by any Markdown file:
 
 ```bash
 # From repo root — list all asset files
 find assets/ -type f ! -name "README.md" | while read f; do
   name=$(basename "$f")
-  if ! grep -rq "$name" --include="*.md" --include="*.ipynb" .; then
+  if ! grep -rq "$name" --include="*.md" .; then
     echo "ORPHANED: $f"
   fi
 done

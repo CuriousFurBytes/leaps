@@ -16,7 +16,6 @@
   // ─── Files ────────────────────────────────────────────────────────────────
   "files.associations": {
     "*.md": "markdown",
-    "*.ipynb": "jupyter-notebook",
     "*.env": "dotenv",
     "Dockerfile*": "dockerfile",
     ".markdownlintrc": "yaml"
@@ -24,13 +23,11 @@
   "files.exclude": {
     "**/__pycache__": true,
     "**/*.pyc": true,
-    "**/.ipynb_checkpoints": true,
     "**/node_modules": true,
     "**/.git": false
   },
   "files.watcherExclude": {
-    "**/__pycache__/**": true,
-    "**/.ipynb_checkpoints/**": true
+    "**/__pycache__/**": true
   },
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -84,23 +81,6 @@
   "ruff.lint.run": "onType",
   "ruff.organizeImports": true,
 
-  // ─── Jupyter ──────────────────────────────────────────────────────────────
-  "jupyter.askForKernelRestart": false,
-  "jupyter.notebookFileRoot": "${workspaceFolder}",
-  "jupyter.interactiveWindow.textEditor.executeSelection": true,
-  "jupyter.sendSelectionToInteractiveWindow": false,
-  "notebook.cellToolbarLocation": {
-    "default": "right",
-    "jupyter-notebook": "left"
-  },
-  "notebook.lineNumbers": "on",
-  "notebook.output.scrolling": true,
-  "notebook.output.textLineLimit": 100,
-  "[jupyter-notebook]": {
-    "editor.formatOnSave": false,
-    "diffEditor.ignoreTrimWhitespace": false
-  },
-
   // ─── Spell Checker ────────────────────────────────────────────────────────
   "cSpell.enabled": true,
   "cSpell.language": "en",
@@ -110,9 +90,6 @@
     "cpython",
     "Ebbinghaus",
     "frontmatter",
-    "ipynb",
-    "ipywidgets",
-    "jupyterlab",
     "markdownlint",
     "matplotlib",
     "numpy",
@@ -121,13 +98,13 @@
     "pytest",
     "scipy",
     "sympy",
-    "venv"
+    "venv",
+    "zensical"
   ],
   "cSpell.ignorePaths": [
     "**/.git/**",
     "**/node_modules/**",
-    "**/__pycache__/**",
-    "**/*.ipynb"
+    "**/__pycache__/**"
   ],
 
   // ─── GitLens ──────────────────────────────────────────────────────────────
@@ -138,7 +115,6 @@
   // ─── Explorer ─────────────────────────────────────────────────────────────
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "*.md": "${capture}.ipynb",
     "pyproject.toml": "requirements*.txt, setup.py, setup.cfg, .python-version"
   },
   "explorer.sortOrder": "type",
@@ -153,7 +129,6 @@
   // ─── Search ───────────────────────────────────────────────────────────────
   "search.exclude": {
     "**/__pycache__": true,
-    "**/.ipynb_checkpoints": true,
     "**/site": true,
     "**/.venv": true,
     "**/node_modules": true

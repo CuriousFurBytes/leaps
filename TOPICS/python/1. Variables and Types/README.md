@@ -626,7 +626,6 @@ In Python, the *object* has a type, not the variable. `x = 42` — the integer `
 |----------|------|
 | Exercises | [EXERCISES.md](./EXERCISES.md) |
 | Test | [TEST.md](./TEST.md) |
-| Notebook | [notebooks/](./notebooks/) |
 
 ---
 

@@ -41,14 +41,6 @@ uv.lock
 !.env.example
 !.env.template
 
-# ── Jupyter ───────────────────────────────────────────────────────────────────
-.ipynb_checkpoints/
-*/.ipynb_checkpoints/
-**/.ipynb_checkpoints/
-*.ipynb.bak
-# Notebook outputs are kept intentionally so rendered results are visible.
-# To strip outputs before commit: nbstripout --install
-
 # ── Testing ───────────────────────────────────────────────────────────────────
 .pytest_cache/
 .coverage
@@ -69,10 +61,12 @@ dmypy.json
 .pyre/
 .ruff_cache/
 
-# ── Build / Docs ──────────────────────────────────────────────────────────────
+# ── Build / Docs (Zensical) ───────────────────────────────────────────────────
+# `zensical build` output and cache.
 site/
 _site/
 .cache/
+.zensical/
 docs/_build/
 *.mo
 *.pot
@@ -132,7 +126,7 @@ conda-meta/
 docker-compose.override.yml
 docker-compose.local.yml
 
-# ── Node (for MkDocs themes, tooling) ────────────────────────────────────────
+# ── Node (for Zensical themes, tooling) ──────────────────────────────────────
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -179,7 +173,6 @@ service-account*.json
 PRIVATE/
 private/
 *.private.md
-*.private.ipynb
 personal/
 _personal/
 

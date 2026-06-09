@@ -18,7 +18,7 @@ parameters:
 
 ## Description
 
-Generates a complete, step-by-step interactive lab for a specific module. Unlike exercises (which are short, focused problems) and notebooks (which are exploratory), labs are guided, goal-oriented sessions where the learner builds something real from start to finish. Labs have a concrete artifact as their output — a running program, a configured system, a working algorithm, a filled-in diagram.
+Generates a complete, step-by-step interactive lab for a specific module. Unlike exercises (which are short, focused problems), labs are guided, goal-oriented sessions where the learner builds something real from start to finish. Labs have a concrete artifact as their output — a running program, a configured system, a working algorithm, a filled-in diagram.
 
 Labs are stored in `TOPICS/[TOPIC_NAME]/modules/[MODULE_NUMBER]_[slug]/labs/lab-[N]/` and use the template from `TEMPLATES/lab/README.md`.
 

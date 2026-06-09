@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         Use this template for structural and technical issues: broken links, files in the
-        wrong location, invalid notebooks, broken scripts, malformed YAML frontmatter, etc.
+        wrong location, broken scripts, malformed YAML frontmatter, etc.
 
         For issues with the *content* of a module (explanations, exercises, resources),
         please use the **Content Improvement** template instead.
@@ -22,7 +22,6 @@ body:
       options:
         - "Broken internal link (wiki-link or markdown link)"
         - "Broken external link (URL 404 or redirect)"
-        - "Invalid or corrupt Jupyter notebook"
         - "File in wrong location (violates repository structure)"
         - "Missing required file (e.g., module missing TEST.md)"
         - "Malformed YAML frontmatter"

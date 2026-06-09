@@ -129,7 +129,7 @@ Recommended topics: [[web-development]], [[docker]], [[databases]]
 
 ### Data Science Path
 ```text
-NumPy → Pandas → Matplotlib → Seaborn → Jupyter
+NumPy → Pandas → Matplotlib → Seaborn
   → Scikit-learn → Statistics → SQL
 ```text
 Recommended topics: [[data-science]], [[statistics]], [[sql]]

@@ -17,7 +17,7 @@
 8. [Questions System Rules](#8-questions-system-rules)
 9. [Progress Tracking Rules](#9-progress-tracking-rules)
 10. [Cross-Linking Rules](#10-cross-linking-rules)
-11. [Notebook Generation Rules](#11-notebook-generation-rules)
+11. [Book Publishing Rules](#11-book-publishing-rules)
 12. [Interactive Lab Rules](#12-interactive-lab-rules)
 13. [Git Commit Conventions](#13-git-commit-conventions)
 14. [Anti-Patterns — NEVER DO](#14-anti-patterns--never-do)
@@ -169,9 +169,7 @@ leaps/
 │   ├── agent-guide.md
 │   └── faq.md
 │
-├── notebooks/
-│   └── [topic]/
-│       └── [NN]_[descriptive_name].ipynb
+├── zensical.toml          # published-book config (docs_dir = TOPICS/)
 │
 └── environments/
     └── [topic]/
@@ -235,7 +233,7 @@ leaps/
 [[rust#ownership]]               → TOPICS/rust/README.md, section "ownership"
 [[memory-management]]            → TOPICS/memory-management/README.md
 [[shared/glossary#closure]]      → SHARED/glossary.md, entry "closure"
-[[notebooks/python/04_sorting]]  → notebooks/python/04_sorting.ipynb
+[[python/05_data_structures]]    → TOPICS/python/05_data_structures/README.md
 ```
 
 Rules:
@@ -301,7 +299,7 @@ If a module README would exceed 1000 lines, split the module into two separate m
 
 - **Directories:** all lowercase, hyphens for spaces — `control-flow`, `data-structures`
 - **Module directories:** zero-padded two-digit number, underscore, lowercase name — `01_introduction`, `12_testing`
-- **Files:** UPPERCASE for fixed files (`README.md`, `TEST.md`), lowercase with underscores for notebooks (`04_sorting_algorithms.ipynb`)
+- **Files:** UPPERCASE for the fixed module files (`README.md`, `TEST.md`, `NOTES.md`, etc.)
 - **Topic names:** single word where possible (`python`, `rust`, `calculus`); hyphenated for multi-word (`machine-learning`, `data-structures`)
 - **No spaces** in any file or directory name, ever
 
@@ -886,7 +884,7 @@ Add cross-links in the following situations:
 2. **A module's prerequisites exist in another topic.** The prerequisite line must use a wiki-link.
 3. **A glossary term from `SHARED/glossary.md` is used.** Link to the glossary entry on first use per module.
 4. **A shared pattern, algorithm, or technique exists in multiple topics.** Cross-link both directions.
-5. **A notebook or lab provides interactive context for the module content.** Cross-link to the notebook from `RESOURCES.md`.
+5. **A lab provides hands-on context for the module content.** Cross-link to the lab from `RESOURCES.md`.
 6. **A concept in this module is a prerequisite for a concept in another existing module.** Add a "See also" note in both directions.
 
 ### Wiki-Link Format
@@ -896,7 +894,6 @@ Add cross-links in the following situations:
 [[topic-name#section-name]]             → TOPICS/[topic-name]/README.md#section-name
 [[shared/glossary#term-name]]           → SHARED/glossary.md#term-name
 [[shared/concepts#concept-name]]        → SHARED/concepts.md#concept-name
-[[notebooks/topic-name/NN_name]]        → notebooks/[topic-name]/NN_name.ipynb
 [[environments/topic-name]]             → environments/[topic-name]/
 ```
 
@@ -911,7 +908,7 @@ Rules:
 - In the **Cross-Links section** of every module README.md (required)
 - In the **Prerequisites section** when the prerequisite is in another topic (required)
 - Inline in **Theory prose** when a concept is directly related (at agent discretion)
-- In **RESOURCES.md** when linking to notebooks or external documentation
+- In **RESOURCES.md** when linking to labs or external documentation
 
 ### Minimum Cross-Link Requirements
 
@@ -931,73 +928,58 @@ Never fabricate a wiki-link target. Broken links are reported as errors by the l
 
 ---
 
-## 11. Notebook Generation Rules
+## 11. Book Publishing Rules
 
-### When to Generate Notebooks
+The learning material is published as a static book built with
+[Zensical](https://zensical.org) (the static-site generator from the Material
+for MkDocs team) and deployed to GitHub Pages. Agents must keep all content
+compatible with this build.
 
-Generate a Jupyter notebook when:
-- A user explicitly requests one (`"Generate interactive notebook for module 4"`)
-- A module's content benefits significantly from live code execution (data science, algorithms, simulations)
-- A module covers visualization, statistics, or numerical computation
-- An interactive exercise would be meaningfully better than a static exercise
+> [!IMPORTANT]
+> Jupyter notebooks are **not** part of leaps. Do not create `.ipynb` files, do
+> not add a `notebooks/` directory, and do not add Jupyter-related dependencies.
+> Notebook integration was removed to keep GitHub Pages deployment simple.
+> Interactive/illustrative content lives as Markdown inside module files (fenced
+> code blocks, Mermaid diagrams, admonitions, committed static images).
 
-Do not generate notebooks for:
-- Conceptual or theoretical topics where code is not central (e.g., a philosophy module)
-- Modules that are already covered by an existing notebook (update the existing one instead)
+### How the Book Is Built
 
-### Required Notebook Structure
+- **Config:** `zensical.toml` at the repository root. Its `docs_dir` is set to
+  `TOPICS/`, so the book exposes **only** the course index (`TOPICS/README.md`)
+  and the courses themselves. Never move learning content out of `TOPICS/`, and
+  never expect repo tooling (`AGENTS.md`, `PROMPTS/`, `SCRIPTS/`, `TEMPLATES/`,
+  `docs/`, `environments/`) to appear in the book.
+- **Navigation is implicit.** It is derived from the `TOPICS/` directory tree;
+  each directory's `README.md` becomes that section's index page. Creating a
+  topic or module the normal way automatically adds it to the book — there is no
+  navigation file to edit.
+- **Output:** `zensical build --clean` renders the static site into `site/`
+  (git-ignored).
+- **Deploy:** `.github/workflows/docs.yml` runs on every push to `main` (i.e.
+  when a PR is merged) and publishes `site/` to GitHub Pages.
 
-Every generated notebook must contain these sections as Markdown cells:
+### Rules for Agents
 
-1. **Title cell** — H1 title, topic, module number, date created
-2. **Overview cell** — 2–3 sentence summary of what the notebook covers
-3. **Objectives cell** — bulleted list of learning objectives
-4. **Prerequisites cell** — what knowledge/packages are required; wiki-links to source modules
-5. **Theory cells** — Markdown explanations with inline LaTeX for math, alternating with code cells
-6. **Demonstration cells** — runnable code cells that illustrate each major concept
-7. **Exercises cells** — scaffolded code cells (partial code; student fills in the rest)
-8. **Challenges cells** — unscaffolded cells with only a problem statement
-9. **Summary cell** — recap of what was covered
-10. **References cell** — real, verified links to external resources
+1. **Author content as Markdown only.** Everything an agent produces under
+   `TOPICS/` must be Markdown that renders correctly in the book.
+2. **Keep the build clean.** Before finishing content work, verify it builds:
+   `pip install zensical && zensical build --clean`. Resolve build errors; avoid
+   introducing broken relative links.
+3. **Use book-supported syntax** for rich content: fenced code blocks with
+   language hints, Mermaid diagrams (` ```mermaid `), admonitions/callouts, task
+   lists, footnotes, and math (`$…$`). These are enabled in `zensical.toml`.
+4. **Do not edit generated navigation** — there is none to edit. To change the
+   order or grouping, name directories/files accordingly (the existing
+   `NN. Title` module-folder convention sorts naturally).
+5. **Reference images by committed, relative paths.** Do not depend on external
+   hosts or runtime computation to render figures.
 
-### File Naming
+### Local Preview
 
+```bash
+pip install zensical
+zensical serve   # live-reloading preview at http://localhost:8000
 ```
-notebooks/[topic-name]/[NN]_[descriptive_name].ipynb
-```
-
-Examples:
-- `notebooks/python/04_sorting_algorithms.ipynb`
-- `notebooks/calculus/03_derivatives_and_integrals.ipynb`
-- `notebooks/machine-learning/07_gradient_descent.ipynb`
-
-The `NN` prefix must match the corresponding module number.
-
-### Cell Types and Their Roles
-
-| Cell Type | Role |
-|---|---|
-| Markdown | Explanations, section headers, callouts, math (LaTeX) |
-| Code (theory demo) | Short, annotated code illustrating one concept |
-| Code (exercise) | Scaffolded — has `# YOUR CODE HERE` markers |
-| Code (challenge) | Blank or near-blank — learner writes from scratch |
-| Code (visualization) | Generates a plot, diagram, or animation |
-| Raw | Not used in leaps notebooks |
-
-### Visualization Requirements
-
-If the module topic lends itself to visualization:
-- Include at least one `matplotlib` or `plotly` figure
-- All figures must have titles, axis labels, and legends
-- Figures must be generated from data computed within the notebook (no hardcoded image files)
-- Include a cell that allows the learner to modify parameters and observe the effect
-
-### Reproducibility Requirements
-
-- Pin all library versions in the first code cell using a comment: `# Requires: numpy>=1.24, matplotlib>=3.7`
-- All random seeds must be set explicitly: `np.random.seed(42)`
-- Notebooks must run top-to-bottom without errors on a clean kernel
-- Do not depend on local files outside the repository's `environments/` or `assets/` directories
 
 ---
 
@@ -1076,7 +1058,6 @@ type(scope): brief description in imperative mood
 | `refactor` | Restructures content without changing its meaning |
 | `docs` | Updates documentation files (`README.md`, `AGENTS.md`, `CONTRIBUTING.md`) |
 | `chore` | Maintenance tasks (dependency updates, script fixes, CI config) |
-| `notebook` | Adds or updates a Jupyter notebook |
 
 ### Scope Examples
 
@@ -1085,7 +1066,6 @@ type(scope): brief description in imperative mood
 | `topic/python` | Affects the entire Python topic |
 | `module/go/3` | Affects Go module 3 |
 | `test/rust/5` | Affects the test in Rust module 5 |
-| `notebook/calculus` | Affects any notebook in the calculus directory |
 | `shared/glossary` | Affects the global glossary |
 | `agents` | Affects `AGENTS.md` |
 | `scripts` | Affects files in `SCRIPTS/` |
@@ -1103,11 +1083,6 @@ test(module/go/2): generate comprehensive test for goroutines module
 
 20 questions across 4 difficulty tiers. Includes 3 debugging questions
 using realistic goroutine leak scenarios.
-
-notebook(topic/python): add visualization notebook for sorting algorithms
-
-Covers bubble, merge, and quicksort with matplotlib animations.
-Matches module 08_sorting. Requires: numpy>=1.24, matplotlib>=3.7.
 
 fix(topic/networking): correct broken cross-links in module 4
 
@@ -1153,7 +1128,8 @@ The following behaviors are explicitly forbidden. Agents that perform these acti
 - **Never nest module directories beyond the defined structure** (`TOPICS/topic/modules/NN_name/file`).
 - **Never place learning content outside `TOPICS/`.** Notes, questions, and tests belong inside topic module directories.
 - **Never create a topic without a module map in the topic `README.md`.**
-- **Never create a notebook without pinning dependencies.**
+- **Never create `.ipynb` files or a `notebooks/` directory.** Notebooks are not part of leaps (see §11).
+- **Never commit content that breaks the book build** (`zensical build --clean`) — e.g. broken relative links or unsupported syntax.
 - **Never create a lab that requires internet access at exercise time.**
 
 ### Formatting Anti-Patterns
@@ -1187,7 +1163,6 @@ The following table defines the canonical commands understood by agents configur
 | `"Generate module [N] for [topic]"` | Creates a specific numbered module (if it doesn't exist) | New module directory |
 | `"Grade my test in [path]"` | Reads TEST.md + ANSWERS.md, grades, appends grading record | Updated ANSWERS.md + PROGRESS.md |
 | `"Answer my questions in [path]"` | Reads QUESTIONS.md, answers unanswered questions, appends answers | Updated QUESTIONS.md |
-| `"Generate interactive notebook for [topic] module [N]"` | Creates a Jupyter notebook in `notebooks/[topic]/` | New `.ipynb` file |
 | `"Cross-reference [topic A] with [topic B]"` | Finds conceptual overlaps, adds wiki-links in both topics | Updated module READMEs in both topics |
 | `"What topics are available?"` | Lists all directories under `TOPICS/` with one-line descriptions | Summary text |
 | `"Show my progress in [topic]"` | Reads and formats PROGRESS.md | Formatted progress summary |
@@ -1273,16 +1248,13 @@ Before finalizing and committing any generated or modified content, verify every
 - [ ] Exercises increase in difficulty from Easy to Expert
 - [ ] Each exercise states its difficulty and objective
 
-### Notebook Checks (if applicable)
+### Book Build Checks
 
-- [ ] Notebook has all 9 required section cells
-- [ ] File named `NN_descriptive_name.ipynb`
-- [ ] Dependencies pinned in first code cell
-- [ ] Random seeds set explicitly
-- [ ] Notebook runs top-to-bottom without errors
-- [ ] Exercises have `# YOUR CODE HERE` markers
-- [ ] At least one visualization if topic supports it
-- [ ] Cross-linked from corresponding module's `RESOURCES.md`
+- [ ] Content is Markdown only — no `.ipynb` files were added
+- [ ] `zensical build --clean` completes without errors
+- [ ] No broken relative links introduced
+- [ ] Mermaid diagrams / admonitions / code blocks render as intended
+- [ ] New topic or module directory has a `README.md` (becomes its section index)
 
 ### Commit Checks
 

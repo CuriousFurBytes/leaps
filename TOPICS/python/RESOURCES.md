@@ -146,7 +146,6 @@ Python tutorial series are available on all major video platforms including YouT
 |--------|-------|
 | **VS Code** | Free; use the official Python extension (`ms-python.python`) and Pylance |
 | **PyCharm** | JetBrains IDE; Community edition is free; excellent for larger projects |
-| **Jupyter Lab** | Browser-based; ideal for data science and exploratory work |
 | **Neovim / Vim** | For those who prefer terminal; configure with LSP + pyright |
 | **Thonny** | Designed for beginners; great for learning; built-in debugger visualization |
 

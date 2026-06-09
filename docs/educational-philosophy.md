@@ -20,7 +20,7 @@ to solve a problem, explain a concept, or build something — the notes are not 
 This happens because **recording information is not the same as learning it.**
 
 leaps is designed to close that gap. Every structural choice — modules, exercises,
-test questions, spaced repetition hooks, notebooks, cross-links — exists to make
+test questions, spaced repetition hooks, cross-links — exists to make
 active retrieval and application possible, not just passive consumption.
 
 ---
@@ -108,7 +108,7 @@ project-scale exercises in modules.
 
 leaps supports this through:
 - Capstone project suggestions at the end of topic READMEs
-- Jupyter notebooks that build runnable artifacts, not just demonstrate syntax
+- Exercises that build runnable artifacts, not just demonstrate syntax
 - Learning paths designed to converge on a tangible goal (e.g., "build a compiler")
 
 **Implication for contributors:** The best module exercises end with something the
@@ -121,8 +121,10 @@ learning as if publishing it. The act of anticipating a reader's confusion force
 precision. Gaps in understanding that survive private note-taking are exposed by the
 demand to explain clearly.
 
-This is why leaps is a public repository, not a private vault. Contributions are
-visible. The quality bar is the public bar, not the "good enough for me" bar.
+This is why leaps is a public repository, not a private vault — and why the course
+content is published as a [Zensical](https://zensical.org) book on GitHub Pages for
+anyone to read. Contributions are visible. The quality bar is the public bar, not the
+"good enough for me" bar.
 
 **Implication for contributors:** Write as if a competent peer will read and critique
 every word. Because they might.

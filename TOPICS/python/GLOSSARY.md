@@ -190,7 +190,7 @@ The runtime engine that executes Python bytecode. Not a separate program — it'
 CPython's primary memory management strategy: every object has a count of how many references point to it. When the count reaches zero, the memory is immediately reclaimed. More predictable than garbage collection, but cannot handle circular references alone (hence the supplemental cyclic GC).
 
 ### REPL (Read-Eval-Print Loop)
-An interactive programming environment that reads a user input, evaluates it, prints the result, and loops back. The Python REPL is invoked by running `python` (or `python3`) with no arguments. Essential for experimentation. Enhanced REPLs: IPython, Jupyter.
+An interactive programming environment that reads a user input, evaluates it, prints the result, and loops back. The Python REPL is invoked by running `python` (or `python3`) with no arguments. Essential for experimentation. Enhanced REPL: IPython.
 
 ---
 
