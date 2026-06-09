@@ -24,8 +24,7 @@ module.
 
 | Course | Description | Difficulty | Modules |
 |---|---|---|---|
-| [Python](python/) | General-purpose, expressive, batteries-included | Beginner | 9 |
-| [Go](go/) | Compiled, garbage-collected, built for concurrency | Intermediate | 3 |
+| [Go](go/) | Compiled, garbage-collected, built for concurrency | Beginner → Expert | 20 |
 
 The catalog below maps the full landscape of planned topics.
 
@@ -110,8 +109,8 @@ each language instills.
 
 | Topic | Description | Difficulty | Modules | Status |
 |---|---|---|---|---|
-| [Python](python/) | General-purpose, expressive, batteries-included | Beginner | 9 | Active |
-| [Go](go/) | Compiled, garbage-collected, built for concurrency | Intermediate | 3 | Active |
+| [Go](go/) | Compiled, garbage-collected, built for concurrency | Beginner → Expert | 20 | Active |
+| Python | General-purpose, expressive, batteries-included | Beginner | — | Planned |
 | Rust | Systems language with ownership-based memory safety | Advanced | — | Planned |
 | JavaScript | The language of the web; event-driven and prototype-based | Beginner | — | Planned |
 | Haskell | Purely functional language; mathematical and rigorous | Expert | — | Planned |
@@ -243,22 +242,23 @@ Not sure where to begin? These curated paths are based on common starting points
 ### If you are a programmer wanting to go deeper into systems
 
 ```text
-Python (modules 1-5) → Computer Architecture → Operating Systems → C → Rust
+Go (modules 0-9) → Computer Architecture → Operating Systems → C → Rust
 ```
 
-Rationale: Establish a comfortable scripting baseline, understand what the hardware
-actually does, then learn how the OS mediates access to it, then write code without
+Rationale: Establish a comfortable, statically-typed baseline in Go, understand what the
+hardware actually does, then learn how the OS mediates access to it, then write code without
 a safety net, then write code with safety guarantees.
 
 ### If you are starting from scratch with no programming background
 
 ```text
-Python (all modules) → Discrete Mathematics → Algorithms & Data Structures → Linear Algebra
+Go (modules 0-9) → Discrete Mathematics → Algorithms & Data Structures → Linear Algebra
 ```
 
-Rationale: Python's readable syntax minimizes the barrier to entry. Discrete math
-builds the logical reasoning that makes advanced CS tractable. Algorithms teaches
-structured problem-solving. Linear algebra unlocks everything in data science.
+Rationale: Go's small, readable syntax minimizes the barrier to entry while teaching you
+real static typing and concurrency. Discrete math builds the logical reasoning that makes
+advanced CS tractable. Algorithms teaches structured problem-solving. Linear algebra unlocks
+everything in data science.
 
 ### If you want to explore mathematics as a programmer
 
@@ -274,7 +274,7 @@ the payoff — structure everywhere.
 ### If you want to get into AI/ML seriously
 
 ```text
-Python → Linear Algebra → Probability & Statistics → Machine Learning → Deep Learning
+A general-purpose language → Linear Algebra → Probability & Statistics → Machine Learning → Deep Learning
 ```
 
 Rationale: You cannot understand gradient descent without linear algebra, you cannot

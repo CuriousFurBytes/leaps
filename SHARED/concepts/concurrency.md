@@ -377,7 +377,7 @@ There are no data races because only one JavaScript task runs at a time. The tra
 
 ## Cross-Topic Links
 
-- [[python]] — threading, asyncio, multiprocessing, the GIL, concurrent.futures
+- Python — threading, asyncio, multiprocessing, the GIL, concurrent.futures
 - [[go]] — goroutines, channels, sync package, the race detector
 - [[rust]] — ownership and concurrency, Send/Sync, Mutex, Arc, tokio
 - [[javascript]] — event loop, Promises, async/await, Web Workers, SharedArrayBuffer

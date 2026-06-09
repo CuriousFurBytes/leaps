@@ -61,7 +61,7 @@ The interactive Go tour walks you through the language in your browser with runn
 ## Cross-Topic Links
 
 - [[go/1. Types and Variables]] — next module; builds directly on workspace/toolchain knowledge from here
-- [[python]] — if you're coming from Python, comparison of Python's interpreter model vs Go's compiled model is instructive
+- Python — if you're coming from Python, comparison of Python's interpreter model vs Go's compiled model is instructive
 
 ---
 

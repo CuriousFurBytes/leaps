@@ -118,7 +118,7 @@ leaps/
 │   └── references.md          # Shared bibliography and reference list
 │
 ├── TOPICS/                    # All learning topics live here
-│   ├── python/                # Example: Python programming topic
+│   ├── go/                    # Example: Go programming topic (zero → expert)
 │   ├── rust/                  # Example: Rust programming topic
 │   ├── calculus/              # Example: Calculus topic
 │   └── .../                   # Any topic, any domain
@@ -142,7 +142,7 @@ leaps/
 │   └── faq.md                 # Frequently asked questions
 │
 └── environments/              # Reproducible learning environments
-    ├── python/                # Python environment (requirements.txt, Dockerfile)
+    ├── go/                    # Go environment (go.mod, Dockerfile)
     ├── rust/                  # Rust environment (Cargo.toml, Dockerfile)
     └── [topic]/               # Per-topic reproducible environments
 ```
@@ -205,66 +205,39 @@ Module 11+:     Expert        — research-level, cross-domain synthesis
 
 ## Example Topic Structure
 
-Here is the full directory tree for `TOPICS/python/`:
+Here is the directory tree for `TOPICS/go/` — a full zero-to-expert topic that ends in a
+build-a-real-project capstone module:
 
 ```
-TOPICS/python/
-├── README.md
-├── PROGRESS.md
+TOPICS/go/
+├── README.md              # Topic overview, module map, progress, milestones
+├── ROADMAP.md             # Phase-by-phase study plan (zero → expert → capstone)
+├── PROJECTS.md            # Beginner → capstone project ideas
+├── QUESTIONS.md           # Topic-level questions you can add to any time
+├── RESOURCES.md           # Curated books, docs, videos
+├── GLOSSARY.md            # Topic glossary
+├── CHEATSHEET.md          # Quick syntax/idiom reference
 │
-└── modules/
-    ├── 01_introduction/
-    │   ├── README.md         # What is Python? History, design philosophy, use cases
-    │   ├── NOTES.md          # Setup, REPL, first programs
-    │   ├── QUESTIONS.md      # Student questions + AI answers
-    │   ├── EXERCISES.md      # Hello world through basic I/O
-    │   ├── TEST.md           # 20-question formal assessment
-    │   ├── ANSWERS.md        # Answer key + grading records
-    │   ├── RESOURCES.md      # Recommended books, docs, videos
-    │   └── PROJECTS.md       # Mini-projects: CLI calculator, unit converter
-    │
-    ├── 02_data_types_and_variables/
-    │   └── ... (same 8-file structure)
-    │
-    ├── 03_control_flow/
-    │   └── ...
-    │
-    ├── 04_functions_and_scope/
-    │   └── ...
-    │
-    ├── 05_data_structures/
-    │   └── ...
-    │
-    ├── 06_object_oriented_programming/
-    │   └── ...
-    │
-    ├── 07_modules_and_packages/
-    │   └── ...
-    │
-    ├── 08_file_io_and_exceptions/
-    │   └── ...
-    │
-    ├── 09_iterators_and_generators/
-    │   └── ...
-    │
-    ├── 10_decorators_and_metaprogramming/
-    │   └── ...
-    │
-    ├── 11_concurrency_and_parallelism/
-    │   └── ...
-    │
-    ├── 12_testing_and_debugging/
-    │   └── ...
-    │
-    ├── 13_performance_and_profiling/
-    │   └── ...
-    │
-    └── 14_advanced_patterns/
-        └── ...
+├── 0. Introduction/
+│   ├── README.md          # What is Go? History, install/toolchain, hello world
+│   ├── NOTES.md           # Your personal study notes
+│   ├── QUESTIONS.md       # Your questions + AI answers (append-only)
+│   ├── EXERCISES.md       # Practice problems with staged hints + solutions
+│   ├── TEST.md            # Self-assessment with a grading record
+│   ├── ANSWERS.md         # Answer key + rubric
+│   └── RESOURCES.md       # Module-specific resources
+│
+├── 1. Types and Variables/   └── ... (same 7-file structure)
+├── 2. Control Flow/          └── ...
+├── ...                       (Modules 3–18: functions → runtime internals → tooling)
+└── 19. Capstone Project/     └── Build a real production service (with Help sections)
 ```
 
 > [!NOTE]
-> The `TOPICS/python/README.md` links to each module, shows the current progress checklist, and provides the topic-level point total. It is the single entry point for the Python learning path.
+> `TOPICS/go/README.md` links to each module, shows the current progress checklist, and
+> provides the topic-level point total. It is the single entry point for the Go learning path.
+> Every topic follows this shape: it spans **zero → expert** and ends with a **Capstone
+> Project** module in which you build something real.
 
 ---
 
@@ -280,12 +253,12 @@ cd leaps
 # Open in your AI-connected editor (VS Code + Copilot, Cursor, or Claude Code)
 # Then tell your AI agent any of the following:
 
-# "Start learning Python"
+# "Start learning Go"
 # "Generate next module for Rust"
-# "Grade my test in TOPICS/python/modules/03_control_flow/TEST.md"
+# "Grade my test in TOPICS/go/2. Control Flow/TEST.md"
 # "Answer my questions in TOPICS/rust/modules/02_ownership/QUESTIONS.md"
 # "Cross-reference Rust ownership with C memory management"
-# "Show my progress in Python"
+# "Show my progress in Go"
 ```
 
 ### As a Learner (manually)
@@ -296,12 +269,9 @@ git clone https://github.com/your-org/leaps.git
 cd leaps
 
 # Create a new topic using the scaffold script
-./SCRIPTS/new-topic.sh python
+python3 SCRIPTS/new_topic.py rust --modules 12 --difficulty advanced
 
-# Create the first module
-./SCRIPTS/new-module.sh python 01_introduction
-
-# Open TOPICS/python/modules/01_introduction/README.md and start studying
+# Open the generated TOPICS/rust/modules/00_introduction/README.md and start studying
 # Complete the exercises, then take the test
 # Ask your AI agent to grade it
 ```
@@ -344,7 +314,7 @@ The following natural-language commands are understood by agents configured with
 | `"Answer my questions in QUESTIONS.md"` | Appends timestamped answers; never deletes existing content |
 | `"Cross-reference Rust ownership with C memory management"` | Adds cross-links in both topic READMEs and relevant module files |
 | `"What topics are available?"` | Lists all directories under `TOPICS/` with their summaries |
-| `"Show my progress in Python"` | Reads and summarizes `TOPICS/python/PROGRESS.md` |
+| `"Show my progress in Go"` | Reads and summarizes `TOPICS/go/PROGRESS.md` |
 | `"Create a project for module 5"` | Appends a new project spec to `PROJECTS.md` |
 | `"Summarize module 2 for me"` | Reads README.md and NOTES.md, produces a concise summary |
 
@@ -389,20 +359,20 @@ Every module has a maximum point value based on its exercises and test. Points a
 `TOPICS/[topic]/PROGRESS.md` is maintained by AI agents and updated after each graded activity:
 
 ```markdown
-# Progress: Python
+# Progress: Go
 
 ## Stats
-- Total Points: 87 / 340
-- Modules Complete: 3 / 14
+- Total Points: 87 / 470
+- Modules Complete: 3 / 20
 - Average Test Score: 82%
 - Last Active: 2026-05-22
 
 ## Module Checklist
-- [x] 01 Introduction (32/30 pts — bonus earned)
-- [x] 02 Data Types and Variables (28/30 pts)
-- [x] 03 Control Flow (27/30 pts)
-- [ ] 04 Functions and Scope
-- [ ] 05 Data Structures
+- [x] 00 Introduction (32/30 pts — bonus earned)
+- [x] 01 Types and Variables (28/30 pts)
+- [x] 02 Control Flow (27/30 pts)
+- [ ] 03 Functions
+- [ ] 04 Composite Types
 - [ ] ...
 
 ## Milestone Log
@@ -480,9 +450,9 @@ leaps builds a knowledge graph incrementally as topics and modules are created. 
 [[rust]]                          → links to TOPICS/rust/README.md
 [[rust#ownership]]                → links to the Ownership section in Rust
 [[memory-management]]             → links to TOPICS/memory-management/README.md
-[[python#decorators]]             → links to the Decorators section in Python
+[[go#concurrency]]                → links to the Concurrency section in Go
 [[shared/glossary#closure]]       → links to the closure entry in the global glossary
-[[python/05_data_structures]]     → links to a specific module
+[[go/9. Concurrency]]             → links to a specific module
 ```
 
 ### When Cross-Links Are Added

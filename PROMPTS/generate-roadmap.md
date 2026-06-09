@@ -63,8 +63,15 @@ Organize the modules into 3–5 learning phases. Phases represent distinct capab
 - **Phase 2: Core Skills** — The learner can solve practical problems using the main features. Can build real things, not just examples. Typically modules 4–7.
 - **Phase 3: Advanced** — The learner understands internals, handles edge cases, reads source code and papers. Typically modules 8–11.
 - **Phase 4: Expert** — The learner can design systems, evaluate tradeoffs, contribute to the ecosystem. Typically modules 12+.
+- **Final Phase: Capstone** — The learner **builds a real project** that synthesizes the whole topic. Every roadmap must end here.
 
-For some topics, fewer phases make sense (a narrow topic might have 2 phases). For very broad topics, 5 phases may be appropriate.
+> [!IMPORTANT]
+> The roadmap **must** carry the learner all the way to expert ("2+ years working with this
+> professionally") depth and **end with a Capstone Project** in which they build something real.
+> Never produce a roadmap that tops out at beginner or intermediate, and never omit the capstone.
+> This applies to every subject — software and non-software alike. See AGENTS.md §5.
+
+For some topics, fewer middle phases make sense (a narrow topic might have 2 phases). For very broad topics, 5 phases may be appropriate — but the expert ceiling and the final capstone are non-negotiable.
 
 Name phases specifically for the topic — not generic "Phase 1" but "Python Basics" or "Calculus Foundations."
 

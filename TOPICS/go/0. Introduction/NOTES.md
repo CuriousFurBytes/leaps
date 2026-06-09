@@ -102,7 +102,7 @@ _How does this module connect to things you already know?_
 
 | This module's concept | Connects to | How |
 |----------------------|-------------|-----|
-| `package main` | [[python]] `if __name__ == "__main__":` | Both define the program entry point |
+| `package main` | Python `if __name__ == "__main__":` | Both define the program entry point |
 | `go mod init` | npm's `package.json`, pip's `requirements.txt` | Both are dependency declaration files |
 | `go fmt` | Python's `black`, JS's `prettier` | Opinionated auto-formatters that remove style debates |
 | Compiled binary | [[docker-containers]] | Go binaries are easy to containerize — just copy the binary |
