@@ -313,7 +313,7 @@ strcpy(buf, "this string is too long");  // writes past buf — undefined behavi
 
 - [[c]] — Manual memory management with malloc/free, RAII in C++
 - [[rust]] — Ownership, borrowing, lifetimes, the borrow checker
-- [[python]] — CPython memory model, the GIL, gc module
+- Python — CPython memory model, the GIL, gc module
 - [[go]] — Go's escape analysis, GC tuning with GOGC
 - [[operating-systems]] — Virtual memory, paging, memory-mapped files, the kernel allocator
 - [[data-structures]] — How specific data structures (linked lists, trees, hash maps) interact with the allocator

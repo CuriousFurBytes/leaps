@@ -113,7 +113,7 @@ _How does this module connect to things you already know?_
 
 | This module's concept | Connects to | How |
 |----------------------|-------------|-----|
-| Static types (int, float64, string) | [[python/1. Variables and Types]] | Python attaches types to values; Go attaches types to variables. Same idea, opposite direction. |
+| Static types (int, float64, string) | Python (Variables and Types) | Python attaches types to values; Go attaches types to variables. Same idea, opposite direction. |
 | Zero values (nil for pointers) | [[go/4. Pointers]] | A nil pointer's zero value means "points to nothing" — dereferencing it panics. |
 | iota bit flags (ReadPerm, WritePerm) | [[go/5. Structs and Methods]] | Struct fields often use typed constants for status or mode values. |
 | Explicit type conversion | [[go/7. Interfaces]] | Interface satisfaction depends on exact types; conversion matters when implementing interfaces. |

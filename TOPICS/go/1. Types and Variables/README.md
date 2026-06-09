@@ -740,8 +740,8 @@ Within this topic:
 
 In other topics:
 
-- [[python]] — comparison: Python uses dynamic typing (types are attached to values, not variables), which trades compile-time safety for flexibility; understanding the contrast helps you see why Go's static typing is a deliberate choice and not just verbosity
-- [[python/1. Variables and Types]] — Python's type system covers similar ground from a dynamic perspective; useful for comparison if you already know Python
+- Python — comparison: Python uses dynamic typing (types are attached to values, not variables), which trades compile-time safety for flexibility; understanding the contrast helps you see why Go's static typing is a deliberate choice and not just verbosity
+- Python (Variables and Types) — Python's type system covers similar ground from a dynamic perspective; useful for comparison if you already know Python
 
 ---
 

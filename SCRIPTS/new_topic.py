@@ -50,7 +50,11 @@ MODULE_FILES = [
     "RESOURCES.md",
 ]
 
-# Default module names for the numbered modules (after introduction)
+# Default names for the teaching modules that sit between the Introduction (module 0)
+# and the final Capstone Project module. These span the full beginner -> expert arc.
+# The Introduction and the final Capstone Project are added automatically; every topic
+# must reach expert ("2+ years professional") depth before the capstone (see AGENTS.md:
+# Zero-to-Expert Mandate and Mandatory Capstone Project Module).
 DEFAULT_MODULE_NAMES = [
     "Basics",
     "Core Concepts",
@@ -58,12 +62,11 @@ DEFAULT_MODULE_NAMES = [
     "Applied Skills",
     "Advanced Patterns",
     "Deep Dive",
+    "Performance and Internals",
+    "Tooling and Workflow",
     "Expert Topics",
-    "Capstone Review",
-    "Extended Practice",
-    "Mastery",
-    "Research Topics",
-    "Final Synthesis",
+    "Real-World Patterns",
+    "Mastery and Edge Cases",
 ]
 
 
@@ -1014,13 +1017,20 @@ def main() -> int:
         today=date.today().isoformat(),
     )
 
-    # Build module names: 0 = Introduction, then DEFAULT_MODULE_NAMES up to N
+    # Build module names spanning zero -> expert, always ending in a Capstone Project.
+    # Module 0 is Introduction (setup/installation/orientation); the final module is
+    # always the build-a-real-project capstone (see AGENTS.md: Mandatory Capstone
+    # Project Module). The middle modules are filled from the default progression.
     module_names: list[str] = ["Introduction"]
-    for i in range(1, num_modules + 1):
-        if i - 1 < len(DEFAULT_MODULE_NAMES):
-            module_names.append(DEFAULT_MODULE_NAMES[i - 1])
+    # number of teaching modules between Introduction and the Capstone
+    num_middle = max(num_modules - 1, 0)
+    for i in range(num_middle):
+        if i < len(DEFAULT_MODULE_NAMES):
+            module_names.append(DEFAULT_MODULE_NAMES[i])
         else:
-            module_names.append(f"Module {i}")
+            module_names.append(f"Module {i + 1}")
+    if num_modules >= 1:
+        module_names.append("Capstone Project")
 
     # Build placeholder map and file list
     placeholders = make_placeholders(cfg, module_names)

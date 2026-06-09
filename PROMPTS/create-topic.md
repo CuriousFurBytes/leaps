@@ -53,7 +53,13 @@ Before creating anything, read the following files completely:
 
 Before writing any files, plan the following and include this plan in your response as a "Topic Plan" section:
 
-1. **Module Sequence (8–14 modules):** Name each module with its number, title, and a one-sentence description of what it covers. Modules must progress from absolute beginner to expert. The first module introduces the topic with zero assumptions. The last module covers advanced or research-level material.
+1. **Module Sequence (8–20 modules):** Name each module with its number, title, and a one-sentence description of what it covers. The sequence is **mandatory in shape** (see AGENTS.md §5):
+   - **Module 0/01 — Introduction:** zero assumptions about the subject. Covers what it is, why it exists, and — when the subject has tooling — **installation and a working environment end-to-end** (compiler/interpreter/runtime/library, or, for non-software subjects, the orientation and reference materials a true beginner needs).
+   - **Middle modules:** the full beginner → intermediate → advanced arc.
+   - **Expert modules:** the topic must reach **expert / "2+ years working with this professionally"** depth — internals, performance, real-world architecture, tooling, debugging, idioms, and edge cases. Do not stop at intermediate.
+   - **Final module — Capstone Project (required):** the learner builds a real, non-trivial project that synthesizes multiple earlier modules. It must include a **Help / Getting Unstuck section** (staged hints, checkpoints) but must **not** hand over a complete copy-paste solution — the learner drives the build and the help only unblocks them. This applies to every subject, software or not.
+
+   This zero-to-expert-plus-capstone shape is required for **all** topics: programming languages, libraries, frameworks, and non-software subjects (science, history, geography, math, spoken languages, music, etc.).
 
 2. **Prerequisites:** List what a learner must know before starting this topic. Identify which of those prerequisites are covered by existing leaps topics (to generate wiki-links).
 

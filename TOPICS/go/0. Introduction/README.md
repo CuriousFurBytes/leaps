@@ -581,7 +581,7 @@ The `runtime` package provides information about the running Go program and the 
 
 ## Cross-Links
 
-- [[python]] — Python comparison: `print("hello")` vs `fmt.Println("hello")`; both interpreted-style ease, very different execution model
+- Python — Python comparison: `print("hello")` vs `fmt.Println("hello")`; both interpreted-style ease, very different execution model
 - [[rust]] — Rust comparison: both compiled, statically typed; Rust optimizes for safety at the cost of complexity, Go optimizes for simplicity
 - [[go/1. Types and Variables]] — Next module: variables, types, zero values, and constants
 

@@ -217,6 +217,13 @@ they will surface quickly. Expect to revisit earlier modules during the build.
 - {{CAPSTONE_EXTENSION_2}}
 - {{CAPSTONE_EXTENSION_3}}
 
+> [!NOTE]
+> The final module of this topic is a dedicated **Capstone Project** module that walks you
+> through building this for real. It gives you a brief, milestones, and a **Help / Getting
+> Unstuck** section with staged hints — but it deliberately does **not** hand you a finished
+> solution. The help is there so you can get past a blocker and keep going on your own, not so
+> you can skip the build. Struggling productively *is* the learning here.
+
 ---
 
 ## Project Attempt Template

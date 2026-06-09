@@ -74,7 +74,7 @@ _Modules from other topics in the knowledge base that cover related concepts._
 
 | Topic | Module | Relationship |
 |-------|--------|-------------|
-| [[python]] | Module 1: Variables and Types | Python's counterpart to this module. Covers the same ground from a dynamic typing perspective. Useful contrast if you already know Python, or as a reference when comparing how the two languages handle the same programming concepts. |
+| Python | Module 1: Variables and Types | Python's counterpart to this module. Covers the same ground from a dynamic typing perspective. Useful contrast if you already know Python, or as a reference when comparing how the two languages handle the same programming concepts. |
 
 ---
 

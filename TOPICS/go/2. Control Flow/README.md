@@ -817,7 +817,7 @@ Within this topic:
 
 In other topics:
 
-- [[python]] — comparison: Python has `if`/`elif`/`else` (similar), `for`/`while`/`do-while` (three keywords vs Go's one), and `with` for resource management (similar to `defer` but lexically scoped rather than function-scoped)
+- Python — comparison: Python has `if`/`elif`/`else` (similar), `for`/`while`/`do-while` (three keywords vs Go's one), and `with` for resource management (similar to `defer` but lexically scoped rather than function-scoped)
 - [[go/0. Introduction]] — the historical context of Go's minimalist design philosophy applies across all control flow constructs
 
 ---

@@ -63,6 +63,18 @@ Based on the topic README and the preceding modules, determine:
 
 Document this scope plan before writing any files. It will be the first section of your output.
 
+> [!IMPORTANT]
+> **If this is the final module of the topic, it must be the Capstone Project module** (see
+> AGENTS.md §5). A capstone module is build-oriented, not lecture-oriented: its `README.md` is a
+> project brief (goal, requirements, suggested architecture, milestones, acceptance criteria) and
+> its `EXERCISES.md` holds project milestones/checkpoints rather than drills. It **must** include a
+> **Help / Getting Unstuck** section with staged, collapsible hints and pointers back to the
+> relevant teaching modules — but it must **not** contain a complete copy-paste solution. The
+> learner builds the project themselves; the help only unblocks them. State this explicitly in the
+> module. Also confirm the topic as a whole reaches expert ("2+ years professional") depth — if the
+> module you are writing is the last teaching module before the capstone, it should be carrying the
+> learner to that expert ceiling.
+
 ## Step 3: Write TOPICS/[TOPIC_NAME]/modules/[MODULE_NUMBER]_[slug]/README.md
 
 This is the primary learning document. Write it to textbook quality.

@@ -340,9 +340,15 @@ When creating a new topic, always generate **at least the first 3 modules** to p
 
 Every new topic must have, at minimum:
 
-1. `TOPICS/[topic]/README.md` — topic overview
+1. `TOPICS/[topic]/README.md` — topic overview, with a module map spanning zero → expert and ending in a Capstone Project module
 2. `TOPICS/[topic]/PROGRESS.md` — initialized with empty stats
-3. `TOPICS/[topic]/modules/01_introduction/` — all 8 module files
+3. `TOPICS/[topic]/QUESTIONS.md` — topic-level questions file (scaffold from `TEMPLATES/topic/QUESTIONS.md`, even when empty)
+4. The first teaching module — all required module files
+
+> [!IMPORTANT]
+> The topic-level `QUESTIONS.md`, the zero-to-expert module map, and a final Capstone
+> Project module are **required** for every topic. See the Zero-to-Expert Mandate,
+> Mandatory Capstone Project Module, and Mandatory Topic-Level QUESTIONS.md rules above.
 
 ### Content Requirements for Topic README.md
 
@@ -407,6 +413,77 @@ Modules 11+:    Expert        — research-level depth, cross-domain synthesis
 ```
 
 Each module must explicitly state which prior module(s) it builds on in its `Prerequisites` section.
+
+### Zero-to-Expert Mandate
+
+> [!IMPORTANT]
+> **Every topic in leaps must span the full arc from absolute zero to expert.** This is not
+> optional and applies to *every* subject — programming languages, libraries, frameworks,
+> and equally to non-software subjects (mathematics, science, history, geography, spoken
+> languages, music, economics, and so on).
+
+A complete topic teaches *everything a practitioner needs*, in this order:
+
+1. **Ground zero.** Assume the learner knows nothing about the subject. Define the subject,
+   why it exists, and the mental models a complete beginner needs. Never assume prior exposure
+   to the subject itself (you may assume general prerequisites, stated explicitly).
+2. **Setup / installation / orientation (when relevant).** For anything with tooling, the
+   first module must cover installation and a working environment end-to-end (e.g. installing
+   a compiler, an interpreter, a runtime, a library, or the standard reference materials for a
+   non-software subject). For non-tooling subjects, the equivalent is orienting the learner:
+   the vocabulary, notation, and "lay of the land" they need before going deeper.
+3. **Core concepts → intermediate → advanced.** The standard difficulty arc above.
+4. **Expert depth.** The final teaching modules must reach the level of *"I have worked with
+   this professionally for at least two years."* That means internals, performance, edge cases,
+   real-world architecture, idioms, tooling, debugging, and the judgment that only comes from
+   experience — not just feature coverage. A topic that stops at "intermediate" is incomplete
+   and must be expanded before it is considered done.
+
+When you expand an existing topic, your job is to push it toward this expert ceiling, not to
+add more beginner material that already exists.
+
+### Mandatory Capstone Project Module
+
+> [!IMPORTANT]
+> **The final module of every topic must be a Capstone Project module** in which the learner
+> builds a real, non-trivial project that applies what the whole topic taught. This applies to
+> every topic without exception.
+
+Rules for the capstone module:
+
+- It is the **last numbered module** in the topic (after all teaching modules).
+- It is **build-oriented**, not lecture-oriented: the learner produces a real artifact (an
+  application, tool, service, library, proof, research write-up, composition, dataset analysis —
+  whatever a real practitioner of the subject would actually produce).
+- The project must be **realistic** — something a person doing this for a living might genuinely
+  build — and must require synthesizing concepts from **multiple** earlier modules.
+- It must include a **"Help" / "Getting Unstuck" section**: staged hints, checkpoints,
+  architecture suggestions, and links back to the relevant teaching modules — collapsible
+  (`<details>`) where possible so they don't spoil the challenge.
+- It must **let the learner drive.** Provide scaffolding, milestones, and acceptance criteria,
+  but do **not** hand over a complete copy-paste solution that removes the work. The help
+  sections exist so a stuck learner can move forward on their own — not so they can skip the
+  build. State this explicitly in the module.
+- For non-software subjects, "build a real project" still applies: a history topic ends with an
+  original researched essay or timeline; a math topic ends with a substantial proof or applied
+  modelling project; a language topic ends with sustained real communication (a written piece
+  or recorded conversation), and so on.
+
+The capstone module still uses the standard module file set (see Section 6), but its `README.md`
+is organized around the project brief, milestones, and help sections rather than new theory, and
+its `EXERCISES.md` may instead contain project milestones / checkpoints.
+
+### Mandatory Topic-Level QUESTIONS.md
+
+> [!IMPORTANT]
+> **Every topic must be created with a topic-level `QUESTIONS.md`** at `TOPICS/[topic]/QUESTIONS.md`,
+> in addition to the per-module `QUESTIONS.md` files.
+
+This is the learner's space to add questions about the subject as a whole at any time. It must
+exist from the moment the topic is created (scaffold it even when empty), follow the
+`TEMPLATES/topic/QUESTIONS.md` format, and obey the same strict append-only rules as every other
+questions file (see Section 8). Agents answer questions here on request; they never delete or
+overwrite the learner's questions.
 
 ---
 
@@ -1128,6 +1205,10 @@ The following behaviors are explicitly forbidden. Agents that perform these acti
 - **Never nest module directories beyond the defined structure** (`TOPICS/topic/modules/NN_name/file`).
 - **Never place learning content outside `TOPICS/`.** Notes, questions, and tests belong inside topic module directories.
 - **Never create a topic without a module map in the topic `README.md`.**
+- **Never create a topic that does not span zero → expert.** A topic that stops at beginner or intermediate depth is incomplete (see the Zero-to-Expert Mandate).
+- **Never create a topic without a final Capstone Project module** in which the learner builds a real project (see the Mandatory Capstone Project Module rule).
+- **Never create a topic without a topic-level `QUESTIONS.md`.** Scaffold it from the template even when empty.
+- **Never ship a capstone that hands the learner a complete copy-paste solution.** Provide staged help and checkpoints; let the learner build it.
 - **Never create `.ipynb` files or a `notebooks/` directory.** Notebooks are not part of leaps (see §11).
 - **Never commit content that breaks the book build** (`zensical build --clean`) — e.g. broken relative links or unsupported syntax.
 - **Never create a lab that requires internet access at exercise time.**
@@ -1194,8 +1275,12 @@ Before finalizing and committing any generated or modified content, verify every
 
 - [ ] All required files exist in the module directory (all 8 files)
 - [ ] Directory names follow the `NN_module-name` convention
-- [ ] Topic `README.md` has a complete module map
+- [ ] Topic `README.md` has a complete module map spanning zero → expert
+- [ ] The module map ends with a Capstone Project module (build-a-real-project)
 - [ ] `PROGRESS.md` exists at the topic level
+- [ ] Topic-level `QUESTIONS.md` exists (scaffolded from the template)
+- [ ] The topic reaches expert ("2+ years professional") depth, not just intermediate
+- [ ] The capstone module has a Help / Getting Unstuck section and no full copy-paste solution
 
 ### Formatting Checks
 

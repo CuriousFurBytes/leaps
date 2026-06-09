@@ -67,8 +67,8 @@ _Modules from other topics in the knowledge base that cover related concepts._
 
 | Topic | Module | Relationship |
 |-------|--------|-------------|
-| [[python]] | Module 3: Control Flow | Comparison: Python's `for`/`while`/`if` vs Go's consolidated `for`; Python's `with` statement vs Go's `defer` for resource management |
-| [[python]] | Module 1: Variables and Types | Python's string indexing vs Go's range-over-string; both languages iterate differently over Unicode text, and comparing them reinforces the rune vs byte distinction |
+| Python | Module 3: Control Flow | Comparison: Python's `for`/`while`/`if` vs Go's consolidated `for`; Python's `with` statement vs Go's `defer` for resource management |
+| Python | Module 1: Variables and Types | Python's string indexing vs Go's range-over-string; both languages iterate differently over Unicode text, and comparing them reinforces the rune vs byte distinction |
 
 ---
 
